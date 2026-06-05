@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢሎጎስ - የነገረ መለኮት ፈተና መድረክ | Theological Exam Platform</title>
+    <title>ኢሎጎስ - የነገረ መለኮት ፈተና መድረክ</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -17,72 +17,41 @@
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1329 100%);
             min-height: 100vh;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-5%, -5%); }
-        }
-
-        /* Container */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
-            position: relative;
-            z-index: 1;
         }
 
-        /* Hero Section - LARGER TITLE */
         .hero {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
-            margin-bottom: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            margin-bottom: 40px;
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            text-shadow: 0 0 30px rgba(102,126,234,0.3);
+            margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
         }
 
-        /* Admin Panel */
-        .admin-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 30px;
+        .admin-bar {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 15px 25px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -90,53 +59,28 @@
             gap: 15px;
         }
 
-        .admin-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .admin-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        /* Buttons */
         .btn {
-            padding: 12px 28px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 12px;
-            font-weight: 700;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            transition: all 0.3s;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
+            background: #dc3545;
             color: white;
         }
 
         .btn-success {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            background: #28a745;
             color: white;
         }
 
@@ -146,98 +90,63 @@
             color: #667eea;
         }
 
-        .btn-outline:hover {
-            background: #667eea;
-            color: white;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
 
-        /* Course Cards */
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
             margin-top: 30px;
         }
 
         .course-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05);
             border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            cursor: pointer;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
         }
 
         .course-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .course-header {
-            height: 150px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .course-header i {
-            font-size: 4rem;
-            color: white;
-        }
-
-        .course-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0,0,0,0.6);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .course-body {
-            padding: 25px;
+            transform: translateY(-5px);
+            border-color: #667eea;
         }
 
         .course-title {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 10px;
+            color: white;
         }
 
         .course-desc {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
             line-height: 1.5;
+        }
+
+        .question-count {
+            display: inline-block;
+            background: rgba(102,126,234,0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             margin-bottom: 20px;
         }
 
-        .course-stats {
+        .button-group {
             display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            margin-bottom: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .stat {
-            text-align: center;
+        .button-group button {
             flex: 1;
         }
 
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -245,25 +154,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(15px);
-            z-index: 2000;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
             align-items: center;
             justify-content: center;
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #1a1f3a, #0f1329);
-            border-radius: 30px;
-            padding: 40px;
+            background: #1a1f3a;
+            border-radius: 20px;
+            padding: 30px;
             max-width: 500px;
             width: 90%;
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: slideIn 0.3s ease;
-        }
-
-        .modal-large {
-            max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
         }
@@ -272,180 +174,91 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
         .close-modal {
             cursor: pointer;
-            font-size: 2rem;
-            transition: transform 0.3s;
+            font-size: 1.5rem;
         }
 
-        .close-modal:hover {
-            transform: rotate(90deg);
-        }
-
-        /* Form */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 5px;
             color: rgba(255,255,255,0.8);
         }
 
-        .form-group input,
+        .form-group input, 
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 10px;
+            border-radius: 8px;
             color: white;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        /* Quiz Interface */
         .quiz-container {
-            background: linear-gradient(135deg, #1a1f3a, #0f1329);
-            border-radius: 30px;
-            padding: 40px;
-            max-width: 900px;
+            background: #1a1f3a;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 700px;
             width: 90%;
             max-height: 85vh;
             overflow-y: auto;
         }
 
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .quiz-timer {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #f5576c;
-        }
-
-        .question-text {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .options-list {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
         .option {
-            padding: 15px 20px;
+            padding: 12px;
             background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .option:hover {
             background: rgba(102,126,234,0.2);
-            transform: translateX(10px);
         }
 
         .option.selected {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            border-color: transparent;
-        }
-
-        .result-card {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .result-card i {
-            font-size: 5rem;
-            margin-bottom: 20px;
-        }
-
-        .result-score {
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 20px 0;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .container { padding: 15px; }
+            .hero h1 { font-size: 2rem; }
             .courses-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero">
             <h1>ኢሎጎስ</h1>
-            <p>የነገረ መለኮት ፈተና መድረክ • Theological Examination Platform</p>
+            <p>የነገረ መለኮት ፈተና መድረክ</p>
         </div>
 
-        <!-- College Selector -->
-        <div id="collegeSection" style="margin-bottom: 30px;">
-            <select id="collegeSelect" class="btn btn-outline" style="width: 100%; padding: 15px; font-size: 1.1rem;" onchange="filterCoursesByCollege()">
-                <option value="all">ሁሉም ኮሌጆች / All Colleges</option>
-            </select>
-        </div>
-
-        <!-- Admin Panel -->
-        <div id="adminPanel" class="admin-panel" style="display: none;">
-            <div class="admin-info">
-                <div class="admin-avatar"><i class="fas fa-user"></i></div>
-                <div><strong id="adminName"></strong><br><small style="color: #667eea;">Administrator</small></div>
-            </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn btn-primary" onclick="showAddCollegeModal()"><i class="fas fa-university"></i> ኮሌጅ ጨምር</button>
-                <button class="btn btn-success" onclick="showAddCourseModal()"><i class="fas fa-plus"></i> ኮርስ ጨምር</button>
-                <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> ውጣ</button>
+        <div id="adminPanel" class="admin-bar" style="display: none;">
+            <div><strong id="adminName"></strong> (አስተዳዳሪ)</div>
+            <div>
+                <button class="btn btn-primary" onclick="showAddCourseModal()">+ አዲስ ኮርስ</button>
+                <button class="btn btn-danger" onclick="logout()">ውጣ</button>
             </div>
         </div>
 
-        <!-- Login Button -->
         <div id="loginSection" style="text-align: center; margin-bottom: 30px;">
-            <button class="btn btn-primary" onclick="login()" style="font-size: 1.1rem;"><i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ</button>
+            <button class="btn btn-primary" onclick="login()"><i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ</button>
         </div>
 
-        <!-- Courses Grid -->
         <div id="coursesGrid" class="courses-grid"></div>
     </div>
 
@@ -453,117 +266,56 @@
     <div id="studentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span><i class="fas fa-user-graduate"></i> የተማሪ መረጃ</span>
+                <span>📝 የተማሪ መረጃ</span>
                 <span class="close-modal" onclick="closeStudentModal()">&times;</span>
             </div>
             <form id="studentForm">
                 <div class="form-group">
-                    <label>ሙሉ ስም / Full Name</label>
-                    <input type="text" id="studentName" required placeholder="ሙሉ ስምዎን ያስገቡ">
+                    <label>ሙሉ ስም</label>
+                    <input type="text" id="studentName" required>
                 </div>
                 <div class="form-group">
-                    <label>ስልክ ቁጥር / Mobile Number</label>
-                    <input type="tel" id="studentMobile" required placeholder="09XXXXXXXX">
+                    <label>ስልክ ቁጥር</label>
+                    <input type="tel" id="studentMobile" required>
                 </div>
-                <div class="form-group">
-                    <label>ኮሌጅ / College</label>
-                    <input type="text" id="studentCollege" readonly style="background: rgba(255,255,255,0.05);">
-                </div>
-                <div class="form-group">
-                    <label>ኮርስ / Course</label>
-                    <input type="text" id="studentCourse" readonly style="background: rgba(255,255,255,0.05);">
-                </div>
-                <div class="form-group">
-                    <label>የፈተና አይነት / Exam Type</label>
-                    <input type="text" id="studentExamType" readonly style="background: rgba(255,255,255,0.05);">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-play"></i> ፈተና ጀምር</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add College Modal -->
-    <div id="collegeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span><i class="fas fa-university"></i> አዲስ ኮሌጅ ያክሉ</span>
-                <span class="close-modal" onclick="closeCollegeModal()">&times;</span>
-            </div>
-            <form id="collegeForm">
-                <div class="form-group">
-                    <label>የኮሌጅ ስም</label>
-                    <input type="text" id="collegeName" required placeholder="ለምሳሌ: መስቀል ትንሳኤ ኮሌጅ">
-                </div>
-                <div class="form-group">
-                    <label>ኮድ / Code</label>
-                    <input type="text" id="collegeCode" required placeholder="ለምሳሌ: MTC001">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">አስቀምጥ</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">ጀምር</button>
             </form>
         </div>
     </div>
 
     <!-- Add Course Modal -->
     <div id="courseModal" class="modal">
-        <div class="modal-content modal-large">
+        <div class="modal-content">
             <div class="modal-header">
-                <span><i class="fas fa-book"></i> አዲስ ኮርስ ያክሉ</span>
+                <span>📚 አዲስ ኮርስ</span>
                 <span class="close-modal" onclick="closeCourseModal()">&times;</span>
             </div>
             <form id="courseForm">
                 <div class="form-group">
-                    <label>ኮሌጅ / College</label>
-                    <select id="courseCollege" required></select>
-                </div>
-                <div class="form-group">
                     <label>የኮርስ ስም</label>
-                    <input type="text" id="courseName" required placeholder="ለምሳሌ: ኢሳይያስ ትንበያ">
+                    <input type="text" id="courseName" required>
                 </div>
                 <div class="form-group">
                     <label>መግለጫ</label>
-                    <textarea id="courseDesc" rows="3" placeholder="ስለ ኮርሱ አጭር መግለጫ"></textarea>
+                    <textarea id="courseDesc" rows="2"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>አዶ / Icon</label>
-                    <input type="text" id="courseIcon" value="fa-scroll" placeholder="fa-scroll, fa-bible, etc.">
-                </div>
-                <h3 style="margin: 20px 0 15px;">ጥያቄዎች ማከል</h3>
+                <h4>ጥያቄዎች</h4>
                 <div id="questionsContainer">
-                    <div class="question-item" style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
-                        <div class="form-group">
-                            <label>ጥያቄ</label>
-                            <textarea class="q-text" rows="2" placeholder="ጥያቄውን ያስገቡ"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>አማራጭ A</label>
-                            <input class="q-opt-a" type="text" placeholder="አማራጭ A">
-                        </div>
-                        <div class="form-group">
-                            <label>አማራጭ B</label>
-                            <input class="q-opt-b" type="text" placeholder="አማራጭ B">
-                        </div>
-                        <div class="form-group">
-                            <label>አማራጭ C</label>
-                            <input class="q-opt-c" type="text" placeholder="አማራጭ C">
-                        </div>
-                        <div class="form-group">
-                            <label>አማራጭ D</label>
-                            <input class="q-opt-d" type="text" placeholder="አማራጭ D">
-                        </div>
-                        <div class="form-group">
-                            <label>ትክክለኛ መልስ</label>
-                            <select class="q-correct">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                            </select>
-                        </div>
+                    <div class="question-item" style="margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+                        <input type="text" class="q-text" placeholder="ጥያቄ" style="width: 100%; margin-bottom: 10px;">
+                        <input type="text" class="q-opt-a" placeholder="አማራጭ A" style="width: 100%; margin-bottom: 5px;">
+                        <input type="text" class="q-opt-b" placeholder="አማራጭ B" style="width: 100%; margin-bottom: 5px;">
+                        <input type="text" class="q-opt-c" placeholder="አማራጭ C" style="width: 100%; margin-bottom: 5px;">
+                        <input type="text" class="q-opt-d" placeholder="አማራጭ D" style="width: 100%; margin-bottom: 5px;">
+                        <select class="q-correct" style="width: 100%; padding: 8px;">
+                            <option value="A">ትክክለኛ መልስ: A</option>
+                            <option value="B">ትክክለኛ መልስ: B</option>
+                            <option value="C">ትክክለኛ መልስ: C</option>
+                            <option value="D">ትክክለኛ መልስ: D</option>
+                        </select>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline" onclick="addQuestionField()" style="width: 100%; margin-bottom: 15px;">
-                    <i class="fas fa-plus"></i> ሌላ ጥያቄ ያክሉ
-                </button>
+                <button type="button" class="btn btn-outline" onclick="addQuestion()" style="width: 100%; margin-bottom: 10px;">+ ሌላ ጥያቄ</button>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">ኮርሱን አስቀምጥ</button>
             </form>
         </div>
@@ -571,7 +323,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -588,12 +340,11 @@
         const auth = getAuth(app);
 
         let currentUser = null;
-        let currentExam = null;
-        let allColleges = [];
-        let allCourses = [];
+        let currentCourse = null;
+        let currentExamType = null;
 
         window.login = () => {
-            signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Login Error: " + err.message));
+            signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Error: " + err.message));
         };
 
         window.logout = () => signOut(auth);
@@ -611,96 +362,75 @@
                 adminPanel.style.display = 'none';
                 loginSection.style.display = 'block';
             }
-            loadColleges();
             loadCourses();
         });
 
-        async function loadColleges() {
-            const collegesSnapshot = await getDocs(collection(db, "colleges"));
-            allColleges = collegesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            
-            const collegeSelect = document.getElementById('collegeSelect');
-            const existingOptions = collegeSelect.querySelectorAll('option:not([value="all"])');
-            existingOptions.forEach(opt => opt.remove());
-            
-            allColleges.forEach(college => {
-                const option = document.createElement('option');
-                option.value = college.id;
-                option.textContent = `${college.name} (${college.code})`;
-                collegeSelect.appendChild(option);
-            });
-        }
-
         async function loadCourses() {
             const coursesSnapshot = await getDocs(collection(db, "courses"));
-            allCourses = [];
             const coursesGrid = document.getElementById('coursesGrid');
-            coursesGrid.innerHTML = '';
             
+            if (coursesSnapshot.empty) {
+                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 20px;">📖 ምንም ኮርሶች የሉም</div>';
+                return;
+            }
+            
+            coursesGrid.innerHTML = '';
             for (const courseDoc of coursesSnapshot.docs) {
                 const course = { id: courseDoc.id, ...courseDoc.data() };
-                const college = allColleges.find(c => c.id === course.collegeId);
-                const questions = await getDocs(query(collection(db, "questions"), where("courseId", "==", course.id)));
+                const questionsSnapshot = await getDocs(collection(db, "questions"));
+                const courseQuestions = questionsSnapshot.docs.filter(q => q.data().courseId === course.id);
+                const questionCount = courseQuestions.length;
                 
-                allCourses.push({ ...course, collegeName: college?.name || 'Unknown', questionCount: questions.size, questions: questions.docs.map(q => ({ id: q.id, ...q.data() })) });
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <div class="course-title">${escapeHtml(course.name)}</div>
+                    <div class="course-desc">${escapeHtml(course.description || 'በዚህ ኮርስ ውስጥ ያሉ ጥያቄዎች ከዚህ በታች ባሉት አዝራሮች ይገኛሉ')}</div>
+                    <div class="question-count"><i class="fas fa-question-circle"></i> ${questionCount} ጥያቄዎች</div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'quiz')"><i class="fas fa-bolt"></i> ፈጣን ፈተና</button>
+                        <button class="btn btn-danger" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'exam')"><i class="fas fa-trophy"></i> የመጨረሻ ፈተና</button>
+                    </div>
+                    ${currentUser ? `<button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="deleteCourse('${course.id}')">🗑️ ኮርሱን ሰርዝ</button>` : ''}
+                `;
+                coursesGrid.appendChild(card);
             }
-            
-            filterCoursesByCollege();
         }
 
-        window.filterCoursesByCollege = () => {
-            const selectedCollege = document.getElementById('collegeSelect').value;
-            const coursesGrid = document.getElementById('coursesGrid');
-            const filtered = selectedCollege === 'all' ? allCourses : allCourses.filter(c => c.collegeId === selectedCollege);
+        window.startExam = async (courseId, courseName, type) => {
+            const questionsSnapshot = await getDocs(collection(db, "questions"));
+            let allQuestions = [];
+            questionsSnapshot.forEach(doc => {
+                const q = doc.data();
+                if (q.courseId === courseId) {
+                    allQuestions.push({ id: doc.id, ...q });
+                }
+            });
             
-            if (filtered.length === 0) {
-                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 20px;"><i class="fas fa-info-circle"></i> ምንም ኮርሶች የሉም</div>';
+            if (allQuestions.length === 0) {
+                alert('ለዚህ ኮርስ ምንም ጥያቄዎች የሉም! እባክዎ አስተዳዳሪው ጥያቄዎችን ይጨምሩ');
                 return;
             }
             
-            coursesGrid.innerHTML = filtered.map(course => `
-                <div class="course-card">
-                    <div class="course-header">
-                        <i class="fas ${course.icon || 'fa-book'}"></i>
-                        <div class="course-badge">${course.questionCount} ጥያቄዎች</div>
-                    </div>
-                    <div class="course-body">
-                        <div class="course-title">${escapeHtml(course.name)}</div>
-                        <div class="course-desc">${escapeHtml(course.description || '')}</div>
-                        <div class="course-stats">
-                            <div class="stat"><div class="stat-number">${course.questionCount}</div><div class="stat-label">ጥያቄዎች</div></div>
-                        </div>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn btn-primary" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'quiz')"><i class="fas fa-bolt"></i> ፈጣን ፈተና (10 ጥያቄ)</button>
-                            <button class="btn btn-danger" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'exam')"><i class="fas fa-trophy"></i> የመጨረሻ ፈተና (ሁሉም)</button>
-                        </div>
-                        ${currentUser ? `
-                            <div style="margin-top: 15px;">
-                                <button class="btn btn-outline" style="width: 100%;" onclick="alert('Manage questions for ${escapeHtml(course.name)}')"><i class="fas fa-edit"></i> ጥያቄዎች አስተዳድር</button>
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-            `).join('');
-        };
-
-        window.startExam = (courseId, courseName, type) => {
-            const course = allCourses.find(c => c.id === courseId);
-            if (!course || course.questionCount === 0) {
-                alert('ለዚህ ኮርስ ምንም ጥያቄዎች የሉም!');
-                return;
+            if (type === 'quiz' && allQuestions.length > 5) {
+                allQuestions = shuffleArray(allQuestions).slice(0, 5);
             }
             
-            currentExam = { courseId, courseName, type, course: course };
-            document.getElementById('studentCollege').value = allColleges.find(c => c.id === course.collegeId)?.name || '';
-            document.getElementById('studentCourse').value = courseName;
-            document.getElementById('studentExamType').value = type === 'quiz' ? 'ፈጣን ፈተና (10 ጥያቄ)' : 'የመጨረሻ ፈተና';
+            currentCourse = { id: courseId, name: courseName, questions: allQuestions };
+            currentExamType = type;
             document.getElementById('studentModal').style.display = 'flex';
         };
 
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         window.closeStudentModal = () => {
             document.getElementById('studentModal').style.display = 'none';
-            document.getElementById('studentForm').reset();
         };
 
         document.getElementById('studentForm').addEventListener('submit', async (e) => {
@@ -709,221 +439,144 @@
             const studentMobile = document.getElementById('studentMobile').value;
             
             if (!studentName || !studentMobile) {
-                alert('እባክዎ ሙሉ ስም እና ስልክ ቁጥር ያስገቡ');
+                alert('እባክዎ ስም እና ስልክ ቁጥር ያስገቡ');
                 return;
             }
             
             closeStudentModal();
-            
-            let questions = [...currentExam.course.questions];
-            if (currentExam.type === 'quiz' && questions.length > 10) {
-                questions = shuffleArray(questions).slice(0, 10);
-            }
-            
-            await runQuiz(questions, studentName, studentMobile);
+            await runQuiz(studentName, studentMobile);
         });
 
-        async function runQuiz(questions, studentName, studentMobile) {
+        async function runQuiz(studentName, studentMobile) {
             let currentIndex = 0;
-            let answers = new Array(questions.length).fill(null);
-            let startTime = Date.now();
+            let answers = new Array(currentCourse.questions.length).fill(null);
             
-            const quizHTML = `
-                <div class="quiz-container" id="activeQuiz">
-                    <div class="quiz-header">
-                        <div><strong>${escapeHtml(currentExam.courseName)}</strong><br><small>${studentName}</small></div>
-                        <div class="quiz-timer" id="timer">00:00</div>
-                        <button class="btn btn-outline" onclick="closeQuiz()">✕</button>
-                    </div>
-                    <div id="quizContent"></div>
-                </div>
-            `;
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'flex';
             
-            const overlay = document.createElement('div');
-            overlay.className = 'modal';
-            overlay.style.display = 'flex';
-            overlay.innerHTML = quizHTML;
-            document.body.appendChild(overlay);
-            
-            let timerInterval;
-            
-            function updateTimer() {
-                const elapsed = Math.floor((Date.now() - startTime) / 1000);
-                const minutes = Math.floor(elapsed / 60);
-                const seconds = elapsed % 60;
-                document.getElementById('timer').innerText = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-            }
-            
-            timerInterval = setInterval(updateTimer, 1000);
-            
-            function renderQuestion() {
-                const q = questions[currentIndex];
-                const content = document.getElementById('quizContent');
-                content.innerHTML = `
-                    <div class="question-text">${currentIndex + 1}. ${escapeHtml(q.text)}</div>
-                    <div class="options-list">
-                        ${q.options.map((opt, idx) => {
-                            const letter = String.fromCharCode(65 + idx);
-                            return `<div class="option ${answers[currentIndex] === letter ? 'selected' : ''}" onclick="selectAnswerQuiz(${currentIndex}, '${letter}')">
-                                <strong>${letter}.</strong> ${escapeHtml(opt)}
-                            </div>`;
-                        }).join('')}
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                        <button class="btn btn-outline" onclick="prevQuestion()" ${currentIndex === 0 ? 'disabled' : ''}>ቀዳሚ</button>
-                        <span>${currentIndex + 1} / ${questions.length}</span>
-                        <button class="btn btn-primary" onclick="nextQuestion()">${currentIndex === questions.length - 1 ? 'አስገባ' : 'ቀጥል'}</button>
+            function renderQuiz() {
+                const q = currentCourse.questions[currentIndex];
+                modal.innerHTML = `
+                    <div class="quiz-container">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                            <div><strong>${escapeHtml(currentCourse.name)}</strong><br>${studentName}</div>
+                            <button class="btn btn-outline" onclick="this.closest('.modal').remove()">✕</button>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <strong>ጥያቄ ${currentIndex + 1}/${currentCourse.questions.length}</strong>
+                        </div>
+                        <div style="margin-bottom: 20px; font-size: 1.1rem;">
+                            ${escapeHtml(q.text)}
+                        </div>
+                        <div>
+                            ${q.options.map((opt, idx) => {
+                                const letter = String.fromCharCode(65 + idx);
+                                return `<div class="option ${answers[currentIndex] === letter ? 'selected' : ''}" onclick="selectAnswer(${currentIndex}, '${letter}')">
+                                    <strong>${letter}.</strong> ${escapeHtml(opt)}
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                            <button class="btn btn-outline" onclick="changeQuestion(-1)" ${currentIndex === 0 ? 'disabled' : ''}>ቀዳሚ</button>
+                            <button class="btn btn-primary" onclick="changeQuestion(1)">${currentIndex === currentCourse.questions.length - 1 ? 'አስገባ' : 'ቀጥል'}</button>
+                        </div>
                     </div>
                 `;
+                document.body.appendChild(modal);
             }
             
-            window.selectAnswerQuiz = (idx, letter) => {
+            window.selectAnswer = (idx, letter) => {
                 answers[idx] = letter;
-                renderQuestion();
+                renderQuiz();
             };
             
-            window.prevQuestion = () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    renderQuestion();
-                }
-            };
-            
-            window.nextQuestion = () => {
-                if (answers[currentIndex] === null) {
+            window.changeQuestion = (delta) => {
+                if (answers[currentIndex] === null && delta === 1) {
                     alert('እባክዎ መልስ ይምረጡ');
                     return;
                 }
-                if (currentIndex + 1 < questions.length) {
-                    currentIndex++;
-                    renderQuestion();
-                } else {
+                const newIndex = currentIndex + delta;
+                if (newIndex >= 0 && newIndex < currentCourse.questions.length) {
+                    currentIndex = newIndex;
+                    renderQuiz();
+                } else if (newIndex === currentCourse.questions.length) {
                     finishQuiz();
                 }
             };
             
-            window.closeQuiz = () => {
-                clearInterval(timerInterval);
-                overlay.remove();
-            };
-            
             function finishQuiz() {
-                clearInterval(timerInterval);
                 let score = 0;
-                questions.forEach((q, idx) => {
+                currentCourse.questions.forEach((q, idx) => {
                     if (answers[idx] === q.correct) score++;
                 });
-                const percentage = (score / questions.length) * 100;
-                const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+                const percentage = (score / currentCourse.questions.length) * 100;
                 
-                // Save result to Firebase
+                // Save result
                 await addDoc(collection(db, "results"), {
                     studentName, studentMobile,
-                    collegeId: currentExam.course.collegeId,
-                    courseId: currentExam.courseId,
-                    courseName: currentExam.courseName,
-                    examType: currentExam.type,
-                    score, total: questions.length,
-                    percentage, timeSpent,
+                    courseName: currentCourse.name,
+                    examType: currentExamType,
+                    score, total: currentCourse.questions.length,
+                    percentage,
                     date: new Date()
                 });
                 
-                let grade = percentage >= 80 ? 'የላቀ' : percentage >= 60 ? 'ጥሩ' : percentage >= 40 ? 'አማካይ' : 'ዳግም ፈተና ያስፈልጋል';
-                
-                overlay.innerHTML = `
-                    <div class="quiz-container result-card">
-                        <i class="fas fa-check-circle" style="color: #4facfe;"></i>
+                modal.innerHTML = `
+                    <div class="quiz-container" style="text-align: center;">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 20px;"></i>
                         <h2>ፈተና ተጠናቋል!</h2>
-                        <div class="result-score">${score}/${questions.length}</div>
-                        <div style="font-size: 1.5rem;">${percentage.toFixed(1)}%</div>
-                        <div style="margin: 20px 0; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 10px;">ውጤት: ${grade}</div>
-                        <button class="btn btn-primary" onclick="location.reload()">ዝጋ</button>
+                        <div style="font-size: 2rem; margin: 20px 0;">${score}/${currentCourse.questions.length}</div>
+                        <div style="font-size: 1.2rem;">${percentage.toFixed(1)}%</div>
+                        <button class="btn btn-primary" style="margin-top: 20px;" onclick="location.reload()">ዝጋ</button>
                     </div>
                 `;
             }
             
-            renderQuestion();
+            renderQuiz();
         }
-        
-        function shuffleArray(arr) {
-            for(let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-        
+
         // Admin Functions
-        window.showAddCollegeModal = () => {
-            document.getElementById('collegeModal').style.display = 'flex';
-        };
-        
-        window.closeCollegeModal = () => {
-            document.getElementById('collegeModal').style.display = 'none';
-            document.getElementById('collegeForm').reset();
-        };
-        
-        document.getElementById('collegeForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addDoc(collection(db, "colleges"), {
-                name: document.getElementById('collegeName').value,
-                code: document.getElementById('collegeCode').value
-            });
-            alert('ኮሌጅ ተጨምሯል!');
-            closeCollegeModal();
-            loadColleges();
-        });
-        
-        window.showAddCourseModal = async () => {
-            await loadColleges();
-            const select = document.getElementById('courseCollege');
-            select.innerHTML = allColleges.map(c => `<option value="${c.id}">${c.name} (${c.code})</option>`).join('');
+        window.showAddCourseModal = () => {
             document.getElementById('courseModal').style.display = 'flex';
         };
-        
+
         window.closeCourseModal = () => {
             document.getElementById('courseModal').style.display = 'none';
             document.getElementById('courseForm').reset();
-            document.getElementById('questionsContainer').innerHTML = `
-                <div class="question-item" style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
-                    <div class="form-group"><label>ጥያቄ</label><textarea class="q-text" rows="2" placeholder="ጥያቄውን ያስገቡ"></textarea></div>
-                    <div class="form-group"><label>አማራጭ A</label><input class="q-opt-a" type="text" placeholder="አማራጭ A"></div>
-                    <div class="form-group"><label>አማራጭ B</label><input class="q-opt-b" type="text" placeholder="አማራጭ B"></div>
-                    <div class="form-group"><label>አማራጭ C</label><input class="q-opt-c" type="text" placeholder="አማራጭ C"></div>
-                    <div class="form-group"><label>አማራጭ D</label><input class="q-opt-d" type="text" placeholder="አማራጭ D"></div>
-                    <div class="form-group"><label>ትክክለኛ መልስ</label><select class="q-correct"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></div>
-                </div>
-            `;
         };
-        
-        window.addQuestionField = () => {
+
+        window.addQuestion = () => {
             const container = document.getElementById('questionsContainer');
-            const newQuestion = document.createElement('div');
-            newQuestion.className = 'question-item';
-            newQuestion.style.marginBottom = '20px';
-            newQuestion.style.padding = '15px';
-            newQuestion.style.background = 'rgba(255,255,255,0.05)';
-            newQuestion.style.borderRadius = '10px';
-            newQuestion.innerHTML = `
-                <div class="form-group"><label>ጥያቄ</label><textarea class="q-text" rows="2" placeholder="ጥያቄውን ያስገቡ"></textarea></div>
-                <div class="form-group"><label>አማራጭ A</label><input class="q-opt-a" type="text" placeholder="አማራጭ A"></div>
-                <div class="form-group"><label>አማራጭ B</label><input class="q-opt-b" type="text" placeholder="አማራጭ B"></div>
-                <div class="form-group"><label>አማራጭ C</label><input class="q-opt-c" type="text" placeholder="አማራጭ C"></div>
-                <div class="form-group"><label>አማራጭ D</label><input class="q-opt-d" type="text" placeholder="አማራጭ D"></div>
-                <div class="form-group"><label>ትክክለኛ መልስ</label><select class="q-correct"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></div>
-                <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()" style="margin-top: 10px;">ሰርዝ</button>
+            const newDiv = document.createElement('div');
+            newDiv.className = 'question-item';
+            newDiv.style.marginBottom = '15px';
+            newDiv.style.padding = '15px';
+            newDiv.style.background = 'rgba(255,255,255,0.05)';
+            newDiv.style.borderRadius = '10px';
+            newDiv.innerHTML = `
+                <input type="text" class="q-text" placeholder="ጥያቄ" style="width: 100%; margin-bottom: 10px;">
+                <input type="text" class="q-opt-a" placeholder="አማራጭ A" style="width: 100%; margin-bottom: 5px;">
+                <input type="text" class="q-opt-b" placeholder="አማራጭ B" style="width: 100%; margin-bottom: 5px;">
+                <input type="text" class="q-opt-c" placeholder="አማራጭ C" style="width: 100%; margin-bottom: 5px;">
+                <input type="text" class="q-opt-d" placeholder="አማራጭ D" style="width: 100%; margin-bottom: 5px;">
+                <select class="q-correct" style="width: 100%; padding: 8px;">
+                    <option value="A">ትክክለኛ መልስ: A</option>
+                    <option value="B">ትክክለኛ መልስ: B</option>
+                    <option value="C">ትክክለኛ መልስ: C</option>
+                    <option value="D">ትክክለኛ መልስ: D</option>
+                </select>
+                <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()" style="margin-top: 10px; width: 100%;">ሰርዝ</button>
             `;
-            container.appendChild(newQuestion);
+            container.appendChild(newDiv);
         };
-        
+
         document.getElementById('courseForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const collegeId = document.getElementById('courseCollege').value;
             const name = document.getElementById('courseName').value;
             const description = document.getElementById('courseDesc').value;
-            const icon = document.getElementById('courseIcon').value;
             
-            const courseRef = await addDoc(collection(db, "courses"), { collegeId, name, description, icon });
+            const courseRef = await addDoc(collection(db, "courses"), { name, description });
             
             const questionItems = document.querySelectorAll('.question-item');
             for (const item of questionItems) {
@@ -937,16 +590,32 @@
                 if (text && optA && optB && optC && optD) {
                     await addDoc(collection(db, "questions"), {
                         courseId: courseRef.id,
-                        text, options: [optA, optB, optC, optD], correct
+                        text,
+                        options: [optA, optB, optC, optD],
+                        correct
                     });
                 }
             }
             
-            alert('ኮርስ እና ጥያቄዎች ተጨምረዋል!');
+            alert('ኮርስ ተጨምሯል!');
             closeCourseModal();
             loadCourses();
         });
-        
+
+        window.deleteCourse = async (courseId) => {
+            if (confirm('ኮርሱን ለመሰረዝ እንወስናለን? ሁሉም ጥያቄዎች ይወገዳሉ!')) {
+                const questions = await getDocs(collection(db, "questions"));
+                for (const q of questions.docs) {
+                    if (q.data().courseId === courseId) {
+                        await deleteDoc(doc(db, "questions", q.id));
+                    }
+                }
+                await deleteDoc(doc(db, "courses", courseId));
+                alert('ኮርሱ ተሰርዟል');
+                loadCourses();
+            }
+        };
+
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
