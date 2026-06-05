@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢሎጎስ - የነገረ መለኮት ፈተና መድረክ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>ኢሎጎስ - የመስመር ላይ ፈተና መድረክ | Online Exam Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -15,42 +15,43 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1329 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
             min-height: 100vh;
-            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 20px;
         }
 
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 30px;
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
+        /* Header */
+        .header {
             background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .hero p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.2rem;
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
         }
 
-        .admin-bar {
-            background: rgba(255,255,255,0.05);
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 15px 25px;
+            padding: 20px 25px;
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
@@ -67,86 +68,76 @@
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
+        .btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-warning { background: #ffc107; color: #333; }
+        .btn-outline { background: transparent; border: 2px solid #667eea; color: #667eea; }
 
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid #667eea;
-            color: #667eea;
-        }
-
-        .btn-primary:hover {
+        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
+        /* Course Grid */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .course-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
             padding: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .course-card:hover {
             transform: translateY(-5px);
-            border-color: #667eea;
+            background: rgba(255,255,255,0.15);
         }
 
         .course-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: white;
         }
 
-        .course-desc {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 20px;
+        .course-info {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
             line-height: 1.5;
         }
 
-        .question-count {
-            display: inline-block;
-            background: rgba(102,126,234,0.3);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-        }
-
-        .button-group {
+        .course-stats {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
-        .button-group button {
+        .stat {
+            text-align: center;
             flex: 1;
         }
 
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -154,74 +145,137 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 1000;
             align-items: center;
             justify-content: center;
+            overflow-y: auto;
         }
 
         .modal-content {
-            background: #1a1f3a;
+            background: linear-gradient(135deg, #1a1f3a, #0f1329);
             border-radius: 20px;
             padding: 30px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .modal-large {
+            max-width: 800px;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 1.3rem;
             font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .close-modal {
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            transition: transform 0.3s;
         }
 
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Form */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
         }
 
         .form-group input, 
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
             font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
         }
 
-        .quiz-container {
-            background: #1a1f3a;
+        /* Question Item */
+        .question-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Exam Portal */
+        .exam-container {
+            background: linear-gradient(135deg, #1a1f3a, #0f1329);
             border-radius: 20px;
             padding: 30px;
-            max-width: 700px;
-            width: 90%;
-            max-height: 85vh;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
             overflow-y: auto;
         }
 
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .timer-box {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .question-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
         .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px;
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px;
-            margin-bottom: 10px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -230,96 +284,102 @@
             background: rgba(102,126,234,0.2);
         }
 
-        .option.selected {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .option label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
+            .header h1 { font-size: 2rem; }
             .courses-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="hero">
-            <h1>ኢሎጎስ</h1>
-            <p>የነገረ መለኮት ፈተና መድረክ</p>
+        <div class="header">
+            <h1><i class="fas fa-church"></i> ኢሎጎስ</h1>
+            <p>የመስመር ላይ የነገረ መለኮት ፈተና መድረክ | Online Theological Exam Platform</p>
         </div>
 
-        <div id="adminPanel" class="admin-bar" style="display: none;">
-            <div><strong id="adminName"></strong> (አስተዳዳሪ)</div>
+        <!-- Admin Panel -->
+        <div id="adminPanel" class="admin-panel" style="display: none;">
             <div>
-                <button class="btn btn-primary" onclick="showAddCourseModal()">+ አዲስ ኮርስ</button>
-                <button class="btn btn-danger" onclick="logout()">ውጣ</button>
+                <i class="fas fa-user-circle"></i> <strong id="adminName"></strong> (አስተዳዳሪ)
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="showCreateCourseModal()"><i class="fas fa-plus"></i> አዲስ ኮርስ</button>
+                <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> ውጣ</button>
             </div>
         </div>
 
+        <!-- Login Button -->
         <div id="loginSection" style="text-align: center; margin-bottom: 30px;">
-            <button class="btn btn-primary" onclick="login()"><i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ</button>
+            <button class="btn btn-primary" onclick="login()" style="font-size: 1.1rem;"><i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ</button>
         </div>
 
+        <!-- Courses Grid -->
+        <h2 style="margin-bottom: 20px;"><i class="fas fa-book"></i> የትምህርት ኮርሶች</h2>
         <div id="coursesGrid" class="courses-grid"></div>
     </div>
 
-    <!-- Student Info Modal -->
-    <div id="studentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>📝 የተማሪ መረጃ</span>
-                <span class="close-modal" onclick="closeStudentModal()">&times;</span>
-            </div>
-            <form id="studentForm">
-                <div class="form-group">
-                    <label>ሙሉ ስም</label>
-                    <input type="text" id="studentName" required>
-                </div>
-                <div class="form-group">
-                    <label>ስልክ ቁጥር</label>
-                    <input type="tel" id="studentMobile" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">ጀምር</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Course Modal -->
+    <!-- Create Course Modal -->
     <div id="courseModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content modal-large">
             <div class="modal-header">
-                <span>📚 አዲስ ኮርስ</span>
+                <span><i class="fas fa-plus-circle"></i> አዲስ ኮርስ መፍጠር</span>
                 <span class="close-modal" onclick="closeCourseModal()">&times;</span>
             </div>
             <form id="courseForm">
                 <div class="form-group">
                     <label>የኮርስ ስም</label>
-                    <input type="text" id="courseName" required>
+                    <input type="text" id="courseName" required placeholder="ለምሳሌ: ኢሳይያስ ትንበያ">
                 </div>
                 <div class="form-group">
                     <label>መግለጫ</label>
-                    <textarea id="courseDesc" rows="2"></textarea>
+                    <textarea id="courseDesc" rows="2" placeholder="ስለ ኮርሱ አጭር መግለጫ"></textarea>
                 </div>
-                <h4>ጥያቄዎች</h4>
-                <div id="questionsContainer">
-                    <div class="question-item" style="margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
-                        <input type="text" class="q-text" placeholder="ጥያቄ" style="width: 100%; margin-bottom: 10px;">
-                        <input type="text" class="q-opt-a" placeholder="አማራጭ A" style="width: 100%; margin-bottom: 5px;">
-                        <input type="text" class="q-opt-b" placeholder="አማራጭ B" style="width: 100%; margin-bottom: 5px;">
-                        <input type="text" class="q-opt-c" placeholder="አማራጭ C" style="width: 100%; margin-bottom: 5px;">
-                        <input type="text" class="q-opt-d" placeholder="አማራጭ D" style="width: 100%; margin-bottom: 5px;">
-                        <select class="q-correct" style="width: 100%; padding: 8px;">
-                            <option value="A">ትክክለኛ መልስ: A</option>
-                            <option value="B">ትክክለኛ መልስ: B</option>
-                            <option value="C">ትክክለኛ መልስ: C</option>
-                            <option value="D">ትክክለኛ መልስ: D</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>የፈተና ጊዜ (በሰከንዶች)</label>
+                    <input type="number" id="examTime" value="1800" placeholder="ለምሳሌ: 1800 = 30 ደቂቃ">
+                    <small>ለፈጣን ፈተና 600 (10 ደቂቃ), ለመጨረሻ ፈተና 3600 (60 ደቂቃ)</small>
                 </div>
-                <button type="button" class="btn btn-outline" onclick="addQuestion()" style="width: 100%; margin-bottom: 10px;">+ ሌላ ጥያቄ</button>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">ኮርሱን አስቀምጥ</button>
+                <h3 style="margin: 20px 0 15px;"><i class="fas fa-question-circle"></i> ጥያቄዎች ማከል</h3>
+                <div id="questionsContainer"></div>
+                <button type="button" class="btn btn-outline" onclick="addQuestionField()" style="width: 100%; margin-bottom: 15px;">
+                    <i class="fas fa-plus"></i> ሌላ ጥያቄ ያክሉ
+                </button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-save"></i> ኮርሱን አስቀምጥ</button>
             </form>
         </div>
     </div>
+
+    <!-- Exam Portal Modal -->
+    <div id="examModal" class="modal"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -340,8 +400,7 @@
         const auth = getAuth(app);
 
         let currentUser = null;
-        let currentCourse = null;
-        let currentExamType = null;
+        let currentExamData = null;
 
         window.login = () => {
             signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Error: " + err.message));
@@ -370,7 +429,7 @@
             const coursesGrid = document.getElementById('coursesGrid');
             
             if (coursesSnapshot.empty) {
-                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 20px;">📖 ምንም ኮርሶች የሉም</div>';
+                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 20px;">📚 ምንም ኮርሶች የሉም። እባክዎ አስተዳዳሪው ኮርሶችን ይጨምሩ</div>';
                 return;
             }
             
@@ -384,41 +443,43 @@
                 const card = document.createElement('div');
                 card.className = 'course-card';
                 card.innerHTML = `
-                    <div class="course-title">${escapeHtml(course.name)}</div>
-                    <div class="course-desc">${escapeHtml(course.description || 'በዚህ ኮርስ ውስጥ ያሉ ጥያቄዎች ከዚህ በታች ባሉት አዝራሮች ይገኛሉ')}</div>
-                    <div class="question-count"><i class="fas fa-question-circle"></i> ${questionCount} ጥያቄዎች</div>
-                    <div class="button-group">
-                        <button class="btn btn-primary" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'quiz')"><i class="fas fa-bolt"></i> ፈጣን ፈተና</button>
-                        <button class="btn btn-danger" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'exam')"><i class="fas fa-trophy"></i> የመጨረሻ ፈተና</button>
+                    <div class="course-title">📖 ${escapeHtml(course.name)}</div>
+                    <div class="course-info">${escapeHtml(course.description || 'የነገረ መለኮት ኮርስ')}</div>
+                    <div class="course-stats">
+                        <div class="stat"><div class="stat-value">${questionCount}</div><div>ጥያቄዎች</div></div>
+                        <div class="stat"><div class="stat-value">${course.examTime || 1800}s</div><div>የፈተና ጊዜ</div></div>
                     </div>
-                    ${currentUser ? `<button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="deleteCourse('${course.id}')">🗑️ ኮርሱን ሰርዝ</button>` : ''}
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'quiz', ${course.examTime || 600})"><i class="fas fa-bolt"></i> ፈጣን ፈተና</button>
+                        <button class="btn btn-danger" onclick="startExam('${course.id}', '${escapeHtml(course.name)}', 'exam', ${course.examTime || 1800})"><i class="fas fa-trophy"></i> የመጨረሻ ፈተና</button>
+                    </div>
+                    ${currentUser ? `<button class="btn btn-outline" style="width: 100%; margin-top: 10px;" onclick="deleteCourse('${course.id}')"><i class="fas fa-trash"></i> ኮርሱን ሰርዝ</button>` : ''}
                 `;
                 coursesGrid.appendChild(card);
             }
         }
 
-        window.startExam = async (courseId, courseName, type) => {
+        window.startExam = async (courseId, courseName, examType, timeLimit) => {
             const questionsSnapshot = await getDocs(collection(db, "questions"));
-            let allQuestions = [];
+            let questions = [];
             questionsSnapshot.forEach(doc => {
                 const q = doc.data();
                 if (q.courseId === courseId) {
-                    allQuestions.push({ id: doc.id, ...q });
+                    questions.push({ id: doc.id, ...q });
                 }
             });
             
-            if (allQuestions.length === 0) {
+            if (questions.length === 0) {
                 alert('ለዚህ ኮርስ ምንም ጥያቄዎች የሉም! እባክዎ አስተዳዳሪው ጥያቄዎችን ይጨምሩ');
                 return;
             }
             
-            if (type === 'quiz' && allQuestions.length > 5) {
-                allQuestions = shuffleArray(allQuestions).slice(0, 5);
+            if (examType === 'quiz' && questions.length > 10) {
+                questions = shuffleArray(questions).slice(0, 10);
             }
             
-            currentCourse = { id: courseId, name: courseName, questions: allQuestions };
-            currentExamType = type;
-            document.getElementById('studentModal').style.display = 'flex';
+            currentExamData = { courseId, courseName, examType, questions, timeLimit };
+            showStudentInfoModal();
         };
 
         function shuffleArray(arr) {
@@ -429,115 +490,205 @@
             return arr;
         }
 
-        window.closeStudentModal = () => {
-            document.getElementById('studentModal').style.display = 'none';
-        };
-
-        document.getElementById('studentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const studentName = document.getElementById('studentName').value;
-            const studentMobile = document.getElementById('studentMobile').value;
-            
-            if (!studentName || !studentMobile) {
-                alert('እባክዎ ስም እና ስልክ ቁጥር ያስገቡ');
-                return;
-            }
-            
-            closeStudentModal();
-            await runQuiz(studentName, studentMobile);
-        });
-
-        async function runQuiz(studentName, studentMobile) {
-            let currentIndex = 0;
-            let answers = new Array(currentCourse.questions.length).fill(null);
-            
-            const modal = document.createElement('div');
-            modal.className = 'modal';
+        function showStudentInfoModal() {
+            const modal = document.getElementById('examModal');
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span><i class="fas fa-user-graduate"></i> የተማሪ መረጃ</span>
+                        <span class="close-modal" onclick="closeExamModal()">&times;</span>
+                    </div>
+                    <form id="studentInfoForm">
+                        <div class="form-group">
+                            <label>ሙሉ ስም / Full Name</label>
+                            <input type="text" id="studentName" required placeholder="ሙሉ ስምዎን ያስገቡ">
+                        </div>
+                        <div class="form-group">
+                            <label>ስልክ ቁጥር / Mobile Number</label>
+                            <input type="tel" id="studentMobile" required placeholder="09XXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>ኮሌጅ / College (ካለ)</label>
+                            <input type="text" id="studentCollege" placeholder="የኮሌጅ ስም">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-play"></i> ፈተና ጀምር</button>
+                    </form>
+                </div>
+            `;
             modal.style.display = 'flex';
             
-            function renderQuiz() {
-                const q = currentCourse.questions[currentIndex];
+            document.getElementById('studentInfoForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const studentName = document.getElementById('studentName').value;
+                const studentMobile = document.getElementById('studentMobile').value;
+                const studentCollege = document.getElementById('studentCollege').value;
+                
+                if (!studentName || !studentMobile) {
+                    alert('እባክዎ ስም እና ስልክ ቁጥር ያስገቡ');
+                    return;
+                }
+                
+                closeExamModal();
+                runExam(studentName, studentMobile, studentCollege);
+            });
+        }
+
+        function runExam(studentName, studentMobile, studentCollege) {
+            let currentIndex = 0;
+            let answers = new Array(currentExamData.questions.length).fill(null);
+            let timeLeft = currentExamData.timeLimit;
+            let timerInterval;
+            
+            function renderExam() {
+                const q = currentExamData.questions[currentIndex];
+                const modal = document.getElementById('examModal');
+                
+                let optionsHtml = '';
+                q.options.forEach((opt, idx) => {
+                    const letter = String.fromCharCode(65 + idx);
+                    optionsHtml += `
+                        <div class="option" onclick="document.getElementById('q${currentIndex}_${letter}').click()">
+                            <input type="radio" name="q${currentIndex}" id="q${currentIndex}_${letter}" value="${letter}" ${answers[currentIndex] === letter ? 'checked' : ''} onchange="selectAnswer(${currentIndex}, '${letter}')">
+                            <label for="q${currentIndex}_${letter}"><strong>${letter}.</strong> ${escapeHtml(opt)}</label>
+                        </div>
+                    `;
+                });
+                
                 modal.innerHTML = `
-                    <div class="quiz-container">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                            <div><strong>${escapeHtml(currentCourse.name)}</strong><br>${studentName}</div>
-                            <button class="btn btn-outline" onclick="this.closest('.modal').remove()">✕</button>
+                    <div class="exam-container">
+                        <div class="exam-header">
+                            <div>
+                                <h3>${escapeHtml(currentExamData.courseName)}</h3>
+                                <small>${studentName} | ${studentMobile}</small>
+                                <div>${currentExamData.examType === 'quiz' ? 'ፈጣን ፈተና' : 'የመጨረሻ ፈተና'}</div>
+                            </div>
+                            <div class="timer-box" id="timerDisplay">
+                                <i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}
+                            </div>
                         </div>
-                        <div style="margin-bottom: 20px;">
-                            <strong>ጥያቄ ${currentIndex + 1}/${currentCourse.questions.length}</strong>
+                        
+                        <div class="question-box">
+                            <div class="question-text">
+                                <strong>ጥያቄ ${currentIndex + 1}/${currentExamData.questions.length}</strong><br>
+                                ${escapeHtml(q.text)}
+                            </div>
+                            <div class="options">
+                                ${optionsHtml}
+                            </div>
                         </div>
-                        <div style="margin-bottom: 20px; font-size: 1.1rem;">
-                            ${escapeHtml(q.text)}
+                        
+                        <div class="nav-buttons">
+                            <button class="btn btn-outline" onclick="changeQuestion(-1)" ${currentIndex === 0 ? 'disabled' : ''}>◀ ቀዳሚ</button>
+                            <span style="padding: 10px;">${currentIndex + 1} / ${currentExamData.questions.length}</span>
+                            <button class="btn btn-primary" onclick="changeQuestion(1)">ቀጥል ▶</button>
                         </div>
-                        <div>
-                            ${q.options.map((opt, idx) => {
-                                const letter = String.fromCharCode(65 + idx);
-                                return `<div class="option ${answers[currentIndex] === letter ? 'selected' : ''}" onclick="selectAnswer(${currentIndex}, '${letter}')">
-                                    <strong>${letter}.</strong> ${escapeHtml(opt)}
-                                </div>`;
-                            }).join('')}
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-                            <button class="btn btn-outline" onclick="changeQuestion(-1)" ${currentIndex === 0 ? 'disabled' : ''}>ቀዳሚ</button>
-                            <button class="btn btn-primary" onclick="changeQuestion(1)">${currentIndex === currentCourse.questions.length - 1 ? 'አስገባ' : 'ቀጥል'}</button>
-                        </div>
+                        
+                        <button class="btn submit-btn" onclick="submitExam()">
+                            <i class="fas fa-paper-plane"></i> ፈተናውን አስገባ
+                        </button>
                     </div>
                 `;
-                document.body.appendChild(modal);
+                modal.style.display = 'flex';
             }
             
             window.selectAnswer = (idx, letter) => {
                 answers[idx] = letter;
-                renderQuiz();
             };
             
             window.changeQuestion = (delta) => {
-                if (answers[currentIndex] === null && delta === 1) {
-                    alert('እባክዎ መልስ ይምረጡ');
-                    return;
-                }
                 const newIndex = currentIndex + delta;
-                if (newIndex >= 0 && newIndex < currentCourse.questions.length) {
+                if (newIndex >= 0 && newIndex < currentExamData.questions.length) {
                     currentIndex = newIndex;
-                    renderQuiz();
-                } else if (newIndex === currentCourse.questions.length) {
-                    finishQuiz();
+                    renderExam();
                 }
             };
             
-            function finishQuiz() {
+            window.submitExam = () => {
+                const unanswered = answers.some(a => a === null);
+                if (unanswered) {
+                    if (!confirm('አንዳንድ ጥያቄዎች መልስ አላገኙም! ፈተናውን ማስገባት ይፈልጋሉ?')) {
+                        return;
+                    }
+                }
+                
+                clearInterval(timerInterval);
+                
                 let score = 0;
-                currentCourse.questions.forEach((q, idx) => {
+                currentExamData.questions.forEach((q, idx) => {
                     if (answers[idx] === q.correct) score++;
                 });
-                const percentage = (score / currentCourse.questions.length) * 100;
+                const percentage = (score / currentExamData.questions.length) * 100;
                 
                 // Save result
-                await addDoc(collection(db, "results"), {
-                    studentName, studentMobile,
-                    courseName: currentCourse.name,
-                    examType: currentExamType,
-                    score, total: currentCourse.questions.length,
+                addDoc(collection(db, "results"), {
+                    studentName, studentMobile, studentCollege,
+                    courseId: currentExamData.courseId,
+                    courseName: currentExamData.courseName,
+                    examType: currentExamData.examType,
+                    score, total: currentExamData.questions.length,
                     percentage,
+                    timeSpent: currentExamData.timeLimit - timeLeft,
                     date: new Date()
                 });
                 
+                let grade = percentage >= 80 ? 'የላቀ (Excellent)' : percentage >= 60 ? 'ጥሩ (Good)' : percentage >= 40 ? 'አማካይ (Average)' : 'ዳግም ፈተና ያስፈልጋል (Need Improvement)';
+                
+                const modal = document.getElementById('examModal');
                 modal.innerHTML = `
-                    <div class="quiz-container" style="text-align: center;">
-                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #28a745; margin-bottom: 20px;"></i>
+                    <div class="exam-container" style="text-align: center;">
+                        <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 20px;"></i>
                         <h2>ፈተና ተጠናቋል!</h2>
-                        <div style="font-size: 2rem; margin: 20px 0;">${score}/${currentCourse.questions.length}</div>
-                        <div style="font-size: 1.2rem;">${percentage.toFixed(1)}%</div>
-                        <button class="btn btn-primary" style="margin-top: 20px;" onclick="location.reload()">ዝጋ</button>
+                        <h3>${escapeHtml(currentExamData.courseName)}</h3>
+                        <p>${studentName} | ${studentMobile}</p>
+                        <div style="font-size: 3rem; margin: 20px 0;">${score}/${currentExamData.questions.length}</div>
+                        <div style="font-size: 1.5rem;">${percentage.toFixed(1)}%</div>
+                        <div style="margin: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">${grade}</div>
+                        <button class="btn btn-primary" onclick="closeExamModal()">ዝጋ</button>
                     </div>
                 `;
+            };
+            
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        alert('ጊዜው አልቋል! ፈተናው በራስ ይሰረዛል');
+                        submitExam();
+                    } else {
+                        timeLeft--;
+                        const timerDisplay = document.getElementById('timerDisplay');
+                        if (timerDisplay) {
+                            timerDisplay.innerHTML = `<i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}`;
+                        }
+                        if (timeLeft <= 60) {
+                            timerDisplay.style.background = '#dc3545';
+                            timerDisplay.style.animation = 'pulse 1s infinite';
+                        }
+                    }
+                }, 1000);
             }
             
-            renderQuiz();
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+            }
+            
+            renderExam();
+            startTimer();
         }
 
+        window.closeExamModal = () => {
+            const modal = document.getElementById('examModal');
+            modal.style.display = 'none';
+            modal.innerHTML = '';
+            if (currentExamData) location.reload();
+        };
+
         // Admin Functions
-        window.showAddCourseModal = () => {
+        window.showCreateCourseModal = () => {
+            document.getElementById('questionsContainer').innerHTML = '';
+            addQuestionField();
             document.getElementById('courseModal').style.display = 'flex';
         };
 
@@ -546,37 +697,33 @@
             document.getElementById('courseForm').reset();
         };
 
-        window.addQuestion = () => {
+        window.addQuestionField = () => {
             const container = document.getElementById('questionsContainer');
-            const newDiv = document.createElement('div');
-            newDiv.className = 'question-item';
-            newDiv.style.marginBottom = '15px';
-            newDiv.style.padding = '15px';
-            newDiv.style.background = 'rgba(255,255,255,0.05)';
-            newDiv.style.borderRadius = '10px';
-            newDiv.innerHTML = `
-                <input type="text" class="q-text" placeholder="ጥያቄ" style="width: 100%; margin-bottom: 10px;">
-                <input type="text" class="q-opt-a" placeholder="አማራጭ A" style="width: 100%; margin-bottom: 5px;">
-                <input type="text" class="q-opt-b" placeholder="አማራጭ B" style="width: 100%; margin-bottom: 5px;">
-                <input type="text" class="q-opt-c" placeholder="አማራጭ C" style="width: 100%; margin-bottom: 5px;">
-                <input type="text" class="q-opt-d" placeholder="አማራጭ D" style="width: 100%; margin-bottom: 5px;">
-                <select class="q-correct" style="width: 100%; padding: 8px;">
-                    <option value="A">ትክክለኛ መልስ: A</option>
-                    <option value="B">ትክክለኛ መልስ: B</option>
-                    <option value="C">ትክክለኛ መልስ: C</option>
-                    <option value="D">ትክክለኛ መልስ: D</option>
-                </select>
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-item';
+            qDiv.innerHTML = `
+                <div class="form-group"><label>ጥያቄ</label><textarea class="q-text" rows="2" required placeholder="ጥያቄውን ያስገቡ"></textarea></div>
+                <div class="form-group"><label>አማራጭ A</label><input class="q-opt-a" type="text" required placeholder="አማራጭ A"></div>
+                <div class="form-group"><label>አማራጭ B</label><input class="q-opt-b" type="text" required placeholder="አማራጭ B"></div>
+                <div class="form-group"><label>አማራጭ C</label><input class="q-opt-c" type="text" required placeholder="አማራጭ C"></div>
+                <div class="form-group"><label>አማራጭ D</label><input class="q-opt-d" type="text" required placeholder="አማራጭ D"></div>
+                <div class="form-group"><label>ትክክለኛ መልስ</label>
+                    <select class="q-correct">
+                        <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                    </select>
+                </div>
                 <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()" style="margin-top: 10px; width: 100%;">ሰርዝ</button>
             `;
-            container.appendChild(newDiv);
+            container.appendChild(qDiv);
         };
 
         document.getElementById('courseForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('courseName').value;
             const description = document.getElementById('courseDesc').value;
+            const examTime = parseInt(document.getElementById('examTime').value);
             
-            const courseRef = await addDoc(collection(db, "courses"), { name, description });
+            const courseRef = await addDoc(collection(db, "courses"), { name, description, examTime });
             
             const questionItems = document.querySelectorAll('.question-item');
             for (const item of questionItems) {
@@ -590,14 +737,12 @@
                 if (text && optA && optB && optC && optD) {
                     await addDoc(collection(db, "questions"), {
                         courseId: courseRef.id,
-                        text,
-                        options: [optA, optB, optC, optD],
-                        correct
+                        text, options: [optA, optB, optC, optD], correct
                     });
                 }
             }
             
-            alert('ኮርስ ተጨምሯል!');
+            alert('ኮርስ በሚገባ ተፈጥሯል!');
             closeCourseModal();
             loadCourses();
         });
