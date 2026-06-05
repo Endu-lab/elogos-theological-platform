@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ኢሎጎስ - የነገረ መለኮት መድረክ | Theological Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>ኢሎጎስ - የነገረ መለኮት አካዳሚ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinema&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -14,114 +14,131 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1329 100%);
         }
 
-        .container {
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10%, -10%); }
+        }
+
+        /* Glass Effect Container */
+        .glass-container {
             max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 80px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Header Section */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.2rem;
-        }
-
-        /* Admin Bar */
-        .admin-bar {
-            background: white;
-            border-radius: 15px;
+        /* Admin Profile Card */
+        .admin-profile {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
             padding: 15px 25px;
             margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            animation: fadeInUp 0.8s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease 0.1s backwards;
         }
 
-        .admin-info {
+        .profile-info {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .admin-avatar {
+        .profile-avatar {
             width: 50px;
             height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 1.5rem;
         }
 
+        /* Buttons */
         .btn {
             padding: 12px 28px;
             border: none;
-            border-radius: 10px;
-            cursor: pointer;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
-            background: #28a745;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
             color: white;
         }
 
@@ -136,94 +153,127 @@
             color: white;
         }
 
-        /* Course Grid */
+        /* Course Cards Grid */
+        .courses-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 30px;
-            margin-bottom: 40px;
         }
 
         .course-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.6s ease;
-            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s ease backwards;
         }
 
         .course-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .course-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
-            text-align: center;
-            color: white;
+        .course-cover {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .course-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        .course-cover i {
+            font-size: 4rem;
+            color: white;
+            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
         }
 
-        .course-header h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .question-count {
-            background: rgba(255,255,255,0.2);
-            display: inline-block;
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
             padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
-        .course-body {
+        .course-content {
             padding: 25px;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .course-description {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         .course-stats {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            padding: 15px 0;
             margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stat {
             text-align: center;
+            flex: 1;
         }
 
-        .stat-value {
+        .stat-number {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
-            font-size: 0.8rem;
-            color: #666;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 5px;
         }
 
-        .course-actions {
+        .button-group {
             display: flex;
             gap: 10px;
         }
 
-        .course-actions button {
+        .button-group button {
             flex: 1;
         }
 
-        /* Modal */
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -232,43 +282,43 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            animation: fadeIn 0.3s ease;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content {
-            position: relative;
-            background: white;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 30px;
+            background: #1a1f3a;
             border-radius: 20px;
-            animation: slideIn 0.3s ease;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: slideIn 0.3s ease;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
         }
 
         .close-modal {
-            font-size: 2rem;
             cursor: pointer;
-            color: #999;
-            transition: color 0.3s;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
         }
 
         .close-modal:hover {
-            color: #333;
+            transform: rotate(90deg);
         }
 
-        /* Form Styles */
+        /* Forms */
         .form-group {
             margin-bottom: 20px;
         }
@@ -276,19 +326,20 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
         }
 
-        .form-group input, 
+        .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .form-group input:focus,
@@ -298,96 +349,7 @@
             border-color: #667eea;
         }
 
-        /* Quiz Interface */
-        .quiz-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .quiz-container {
-            background: white;
-            max-width: 800px;
-            width: 90%;
-            border-radius: 20px;
-            padding: 40px;
-            animation: slideIn 0.4s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .quiz-timer {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #dc3545;
-        }
-
-        .question-text {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .options-list {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .option {
-            padding: 15px;
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .option:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-
-        .option.selected {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: transparent;
-        }
-
-        .quiz-progress {
-            margin-top: 20px;
-            text-align: center;
-            color: #666;
-        }
-
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -397,11 +359,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         @keyframes slideIn {
@@ -417,491 +374,236 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
             .courses-grid {
                 grid-template-columns: 1fr;
             }
             
-            .admin-bar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .quiz-container {
-                padding: 20px;
+            .glass-container {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    
+    <div class="glass-container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>ኢሎጎስ</h1>
+            <p>የነገረ መለኮት አካዳሚ • Theological Excellence</p>
+        </div>
 
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <h1><i class="fas fa-church"></i> ኢሎጎስ</h1>
-        <p>የነገረ መለኮት መድረክ | Excellence in Theological Education</p>
-    </div>
+        <!-- Login Section -->
+        <div id="loginSection" style="text-align: center; margin-bottom: 30px;">
+            <button class="btn btn-primary" onclick="login()" style="font-size: 1.1rem;">
+                <i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ
+            </button>
+        </div>
 
-    <!-- Admin Bar -->
-    <div class="admin-bar" id="adminBar" style="display: none;">
-        <div class="admin-info">
-            <div class="admin-avatar">
-                <i class="fas fa-user"></i>
+        <!-- Admin Profile -->
+        <div id="adminProfile" class="admin-profile" style="display: none;">
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <strong id="adminName"></strong><br>
+                    <small style="color: #667eea;">Administrator</small>
+                </div>
             </div>
             <div>
-                <strong id="adminName"></strong><br>
-                <small>Administrator</small>
+                <button class="btn btn-outline" onclick="showAddCourseModal()">
+                    <i class="fas fa-plus"></i> አዲስ ኮርስ
+                </button>
+                <button class="btn btn-danger" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> ውጣ
+                </button>
             </div>
         </div>
-        <div>
-            <button class="btn btn-outline" onclick="openCourseModal()">
-                <i class="fas fa-plus"></i> Add New Course
-            </button>
-            <button class="btn btn-danger" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </button>
+
+        <!-- Courses Section -->
+        <div class="courses-section">
+            <div class="section-title">
+                <i class="fas fa-graduation-cap"></i>
+                <span>የትምህርት ኮርሶች</span>
+            </div>
+            <div id="coursesGrid" class="courses-grid"></div>
         </div>
     </div>
 
-    <!-- Login Button -->
-    <div id="loginSection" style="text-align: center;">
-        <button class="btn btn-primary" onclick="login()" style="font-size: 1.1rem;">
-            <i class="fab fa-google"></i> Admin Login
-        </button>
-    </div>
-
-    <!-- Courses Grid -->
-    <div class="courses-grid" id="coursesGrid"></div>
-</div>
-
-<!-- Add/Edit Course Modal -->
-<div id="courseModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2><i class="fas fa-book"></i> <span id="modalTitle">Add New Course</span></h2>
-            <span class="close-modal" onclick="closeCourseModal()">&times;</span>
-        </div>
-        <form id="courseForm">
-            <div class="form-group">
-                <label>Course Name</label>
-                <input type="text" id="courseName" required placeholder="e.g., Systematic Theology">
+    <!-- Add Course Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><i class="fas fa-plus-circle"></i> አዲስ ኮርስ ያክሉ</span>
+                <span class="close-modal" onclick="closeCourseModal()">&times;</span>
             </div>
-            <div class="form-group">
-                <label>Course Icon (FontAwesome)</label>
-                <input type="text" id="courseIcon" placeholder="fa-bible" value="fa-book">
-                <small>Use any <a href="https://fontawesome.com/icons" target="_blank">FontAwesome icon</a> name</small>
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <textarea id="courseDesc" rows="3" placeholder="Course description..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-save"></i> Save Course
-            </button>
-        </form>
-    </div>
-</div>
-
-<!-- Add Question Modal -->
-<div id="questionModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2><i class="fas fa-question-circle"></i> Add Question to <span id="questionCourseName"></span></h2>
-            <span class="close-modal" onclick="closeQuestionModal()">&times;</span>
-        </div>
-        <form id="questionForm">
-            <input type="hidden" id="currentCourseId">
-            <div class="form-group">
-                <label>Question</label>
-                <textarea id="questionText" rows="3" required placeholder="Enter your question..."></textarea>
-            </div>
-            <div class="form-group">
-                <label>Option A</label>
-                <input type="text" id="optA" required>
-            </div>
-            <div class="form-group">
-                <label>Option B</label>
-                <input type="text" id="optB" required>
-            </div>
-            <div class="form-group">
-                <label>Option C</label>
-                <input type="text" id="optC" required>
-            </div>
-            <div class="form-group">
-                <label>Option D</label>
-                <input type="text" id="optD" required>
-            </div>
-            <div class="form-group">
-                <label>Correct Answer</label>
-                <select id="correctAnswer" required>
-                    <option value="">Select correct answer</option>
-                    <option value="A">Option A</option>
-                    <option value="B">Option B</option>
-                    <option value="C">Option C</option>
-                    <option value="D">Option D</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-save"></i> Save Question
-            </button>
-        </form>
-        <hr style="margin: 20px 0;">
-        <h3>Existing Questions</h3>
-        <div id="questionList" style="max-height: 300px; overflow-y: auto;"></div>
-    </div>
-</div>
-
-<!-- Quiz Overlay -->
-<div id="quizOverlay" class="quiz-overlay">
-    <div class="quiz-container" id="quizContainer"></div>
-</div>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyB9fyVRq3PvE4c9e_w_Aeia773dz-PO4dg",
-        authDomain: "elogos-theological-platform.firebaseapp.com",
-        projectId: "elogos-theological-platform",
-        storageBucket: "elogos-theological-platform.firebasestorage.app",
-        messagingSenderId: "351987877452",
-        appId: "1:351987877452:web:b16a3828b9c12d3057d6e9",
-        measurementId: "G-0RB6EYXN5E"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-
-    let currentUser = null;
-    let currentCourseForQuestions = null;
-
-    // Auth functions
-    window.login = () => {
-        signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Login Error: " + err.message));
-    };
-
-    window.logout = () => {
-        signOut(auth);
-    };
-
-    onAuthStateChanged(auth, (user) => {
-        currentUser = user;
-        const adminBar = document.getElementById('adminBar');
-        const loginSection = document.getElementById('loginSection');
-        
-        if (user) {
-            adminBar.style.display = 'flex';
-            loginSection.style.display = 'none';
-            document.getElementById('adminName').innerHTML = user.displayName || user.email;
-            loadCourses();
-        } else {
-            adminBar.style.display = 'none';
-            loginSection.style.display = 'block';
-            loadCourses(); // Still load courses for public view
-        }
-    });
-
-    // Load and display courses
-    async function loadCourses() {
-        const coursesSnapshot = await getDocs(collection(db, "courses"));
-        const coursesGrid = document.getElementById('coursesGrid');
-        coursesGrid.innerHTML = '';
-        
-        for (const courseDoc of coursesSnapshot.docs) {
-            const course = { id: courseDoc.id, ...courseDoc.data() };
-            const questionsSnapshot = await getDocs(query(collection(db, "questions"), where("courseId", "==", course.id)));
-            const questionCount = questionsSnapshot.size;
-            
-            const card = document.createElement('div');
-            card.className = 'course-card';
-            card.innerHTML = `
-                <div class="course-header">
-                    <div class="course-icon"><i class="fas ${course.icon || 'fa-book'}"></i></div>
-                    <h3>${escapeHtml(course.name)}</h3>
-                    <div class="question-count">${questionCount} Questions</div>
+            <form id="courseForm">
+                <div class="form-group">
+                    <label>የኮርስ ስም</label>
+                    <input type="text" id="courseName" required placeholder="ለምሳሌ: ኢሳይያስ">
                 </div>
-                <div class="course-body">
-                    <div class="course-stats">
-                        <div class="stat">
-                            <div class="stat-value">${questionCount}</div>
-                            <div class="stat-label">Total Questions</div>
-                        </div>
-                    </div>
-                    <p style="color: #666; margin-bottom: 20px;">${escapeHtml(course.description || 'No description')}</p>
-                    <div class="course-actions">
-                        <button class="btn btn-primary" onclick="startQuiz('${course.id}', '${escapeHtml(course.name)}', 'quiz')">
-                            <i class="fas fa-bolt"></i> Quick Quiz
-                        </button>
-                        <button class="btn btn-danger" onclick="startQuiz('${course.id}', '${escapeHtml(course.name)}', 'exam')">
-                            <i class="fas fa-graduation-cap"></i> Final Exam
-                        </button>
-                    </div>
-                    ${currentUser ? `
-                        <div style="margin-top: 15px; display: flex; gap: 10px;">
-                            <button class="btn btn-outline" style="flex:1; font-size:0.85rem;" onclick="openQuestionModal('${course.id}', '${escapeHtml(course.name)}')">
-                                <i class="fas fa-plus"></i> Add Question
-                            </button>
-                            <button class="btn btn-danger" style="flex:1; font-size:0.85rem;" onclick="deleteCourse('${course.id}')">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
-                        </div>
-                    ` : ''}
+                <div class="form-group">
+                    <label>ምልክት (Icon)</label>
+                    <input type="text" id="courseIcon" value="fa-book" placeholder="fa-scroll, fa-bible, etc.">
                 </div>
-            `;
-            coursesGrid.appendChild(card);
-        }
-        
-        if(coursesSnapshot.empty) {
-            coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; color: white; padding: 50px;"><i class="fas fa-info-circle"></i> No courses yet. Admin can add courses.</div>';
-        }
-    }
+                <div class="form-group">
+                    <label>መግለጫ</label>
+                    <textarea id="courseDesc" rows="3" placeholder="ስለ ኮርሱ አጭር መግለጫ..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-save"></i> አስቀምጥ
+                </button>
+            </form>
+        </div>
+    </div>
 
-    // Add Course
-    window.openCourseModal = () => {
-        document.getElementById('courseModal').style.display = 'block';
-    };
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-    window.closeCourseModal = () => {
-        document.getElementById('courseModal').style.display = 'none';
-        document.getElementById('courseForm').reset();
-    };
-
-    document.getElementById('courseForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const name = document.getElementById('courseName').value;
-        const icon = document.getElementById('courseIcon').value;
-        const description = document.getElementById('courseDesc').value;
-        
-        await addDoc(collection(db, "courses"), { name, icon, description, createdAt: new Date() });
-        alert('Course added!');
-        closeCourseModal();
-        loadCourses();
-    });
-
-    window.deleteCourse = async (courseId) => {
-        if(confirm('Delete this course and ALL its questions?')) {
-            const questions = await getDocs(query(collection(db, "questions"), where("courseId", "==", courseId)));
-            questions.forEach(async (q) => {
-                await deleteDoc(doc(db, "questions", q.id));
-            });
-            await deleteDoc(doc(db, "courses", courseId));
-            alert('Course deleted!');
-            loadCourses();
-        }
-    };
-
-    // Question Management
-    window.openQuestionModal = (courseId, courseName) => {
-        currentCourseForQuestions = courseId;
-        document.getElementById('questionCourseName').innerText = courseName;
-        document.getElementById('currentCourseId').value = courseId;
-        document.getElementById('questionModal').style.display = 'block';
-        loadQuestionsForCourse(courseId);
-    };
-
-    window.closeQuestionModal = () => {
-        document.getElementById('questionModal').style.display = 'none';
-        document.getElementById('questionForm').reset();
-    };
-
-    async function loadQuestionsForCourse(courseId) {
-        const questionsSnapshot = await getDocs(query(collection(db, "questions"), where("courseId", "==", courseId)));
-        const listDiv = document.getElementById('questionList');
-        listDiv.innerHTML = '';
-        
-        questionsSnapshot.forEach(docSnap => {
-            const q = docSnap.data();
-            const div = document.createElement('div');
-            div.style.cssText = 'background: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #667eea;';
-            div.innerHTML = `
-                <strong>${escapeHtml(q.text.substring(0, 100))}</strong><br>
-                <small>A: ${escapeHtml(q.options[0])}</small><br>
-                <small>Correct: ${q.correct}</small>
-                <button onclick="deleteQuestion('${docSnap.id}')" style="float: right; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Delete</button>
-            `;
-            listDiv.appendChild(div);
-        });
-    }
-
-    window.deleteQuestion = async (questionId) => {
-        if(confirm('Delete this question?')) {
-            await deleteDoc(doc(db, "questions", questionId));
-            loadQuestionsForCourse(currentCourseForQuestions);
-        }
-    };
-
-    document.getElementById('questionForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const courseId = document.getElementById('currentCourseId').value;
-        const text = document.getElementById('questionText').value;
-        const options = [
-            document.getElementById('optA').value,
-            document.getElementById('optB').value,
-            document.getElementById('optC').value,
-            document.getElementById('optD').value
-        ];
-        const correct = document.getElementById('correctAnswer').value;
-        
-        await addDoc(collection(db, "questions"), { courseId, text, options, correct });
-        alert('Question added!');
-        document.getElementById('questionForm').reset();
-        loadQuestionsForCourse(courseId);
-    });
-
-    // Quiz System
-    let currentQuiz = { questions: [], currentIndex: 0, answers: [], courseName: '', type: '' };
-
-    window.startQuiz = async (courseId, courseName, type) => {
-        const questionsSnapshot = await getDocs(query(collection(db, "questions"), where("courseId", "==", courseId)));
-        let questions = [];
-        questionsSnapshot.forEach(doc => {
-            questions.push({ id: doc.id, ...doc.data() });
-        });
-        
-        if(questions.length === 0) {
-            alert('No questions available for this course yet.');
-            return;
-        }
-        
-        if(type === 'quiz' && questions.length > 10) {
-            questions = shuffleArray(questions).slice(0, 10);
-        }
-        
-        currentQuiz = {
-            questions: questions,
-            currentIndex: 0,
-            answers: new Array(questions.length).fill(null),
-            courseName: courseName,
-            type: type
+        const firebaseConfig = {
+            apiKey: "AIzaSyB9fyVRq3PvE4c9e_w_Aeia773dz-PO4dg",
+            authDomain: "elogos-theological-platform.firebaseapp.com",
+            projectId: "elogos-theological-platform",
+            storageBucket: "elogos-theological-platform.firebasestorage.app",
+            messagingSenderId: "351987877452",
+            appId: "1:351987877452:web:b16a3828b9c12d3057d6e9"
         };
-        
-        showQuizQuestion();
-        document.getElementById('quizOverlay').style.display = 'flex';
-    };
-    
-    function shuffleArray(arr) {
-        for(let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }
-    
-    function showQuizQuestion() {
-        const q = currentQuiz.questions[currentQuiz.currentIndex];
-        const container = document.getElementById('quizContainer');
-        
-        let optionsHtml = '';
-        q.options.forEach((opt, idx) => {
-            const letter = String.fromCharCode(65 + idx);
-            const isSelected = currentQuiz.answers[currentQuiz.currentIndex] === letter;
-            optionsHtml += `
-                <div class="option ${isSelected ? 'selected' : ''}" onclick="selectAnswer('${letter}')">
-                    <strong>${letter}.</strong> ${escapeHtml(opt)}
-                </div>
-            `;
-        });
-        
-        container.innerHTML = `
-            <div class="quiz-header">
-                <h3><i class="fas fa-${currentQuiz.type === 'quiz' ? 'bolt' : 'graduation-cap'}"></i> ${currentQuiz.courseName} - ${currentQuiz.type === 'quiz' ? 'Quick Quiz' : 'Final Exam'}</h3>
-                <button class="btn btn-outline" onclick="closeQuiz()">✕</button>
-            </div>
-            <div class="question-text">
-                <strong>Question ${currentQuiz.currentIndex + 1} of ${currentQuiz.questions.length}</strong><br>
-                ${escapeHtml(q.text)}
-            </div>
-            <div class="options-list">
-                ${optionsHtml}
-            </div>
-            <div style="display: flex; gap: 10px; justify-content: space-between;">
-                <button class="btn btn-outline" onclick="previousQuestion()" ${currentQuiz.currentIndex === 0 ? 'disabled' : ''}>Previous</button>
-                <button class="btn btn-primary" onclick="nextQuestion()">Next</button>
-            </div>
-            <div class="quiz-progress">
-                ${Math.round((currentQuiz.currentIndex + 1) / currentQuiz.questions.length * 100)}% Complete
-            </div>
-        `;
-    }
-    
-    window.selectAnswer = (letter) => {
-        currentQuiz.answers[currentQuiz.currentIndex] = letter;
-        showQuizQuestion();
-    };
-    
-    window.nextQuestion = () => {
-        if(currentQuiz.answers[currentQuiz.currentIndex] === null) {
-            alert('Please select an answer before continuing.');
-            return;
-        }
-        if(currentQuiz.currentIndex + 1 < currentQuiz.questions.length) {
-            currentQuiz.currentIndex++;
-            showQuizQuestion();
-        } else {
-            submitQuiz();
-        }
-    };
-    
-    window.previousQuestion = () => {
-        if(currentQuiz.currentIndex > 0) {
-            currentQuiz.currentIndex--;
-            showQuizQuestion();
-        }
-    };
-    
-    function submitQuiz() {
-        let score = 0;
-        currentQuiz.questions.forEach((q, idx) => {
-            if(currentQuiz.answers[idx] === q.correct) score++;
-        });
-        
-        const percentage = (score / currentQuiz.questions.length) * 100;
-        let grade = '';
-        if(percentage >= 90) grade = 'A+ (Excellent!) 🎉';
-        else if(percentage >= 80) grade = 'A (Very Good) ⭐';
-        else if(percentage >= 70) grade = 'B (Good) 👍';
-        else if(percentage >= 60) grade = 'C (Average) 📚';
-        else if(percentage >= 50) grade = 'D (Pass) ✅';
-        else grade = 'F (Need More Study) 📖';
-        
-        const container = document.getElementById('quizContainer');
-        container.innerHTML = `
-            <div style="text-align: center;">
-                <i class="fas fa-trophy" style="font-size: 4rem; color: #ffd700; margin-bottom: 20px;"></i>
-                <h2>${currentQuiz.type === 'quiz' ? 'Quiz' : 'Exam'} Completed!</h2>
-                <h3>${currentQuiz.courseName}</h3>
-                <div style="font-size: 3rem; margin: 20px 0;">${score}/${currentQuiz.questions.length}</div>
-                <div style="font-size: 1.5rem; margin-bottom: 20px;">${percentage.toFixed(1)}%</div>
-                <div style="font-size: 1.2rem; margin-bottom: 30px;">${grade}</div>
-                <button class="btn btn-primary" onclick="closeQuiz()">Close</button>
-            </div>
-        `;
-    }
-    
-    window.closeQuiz = () => {
-        document.getElementById('quizOverlay').style.display = 'none';
-        currentQuiz = null;
-    };
-    
-    function escapeHtml(str) {
-        if(!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
-            return m;
-        });
-    }
-    
-    // Initial load
-    loadCourses();
-</script>
 
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        let currentUser = null;
+
+        window.login = () => {
+            signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Login Error: " + err.message));
+        };
+
+        window.logout = () => signOut(auth);
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            const adminProfile = document.getElementById('adminProfile');
+            const loginSection = document.getElementById('loginSection');
+            
+            if (user) {
+                adminProfile.style.display = 'flex';
+                loginSection.style.display = 'none';
+                document.getElementById('adminName').innerHTML = user.displayName || user.email;
+            } else {
+                adminProfile.style.display = 'none';
+                loginSection.style.display = 'block';
+            }
+            loadCourses();
+        });
+
+        async function loadCourses() {
+            const coursesSnapshot = await getDocs(collection(db, "courses"));
+            const coursesGrid = document.getElementById('coursesGrid');
+            coursesGrid.innerHTML = '';
+            
+            for (const courseDoc of coursesSnapshot.docs) {
+                const course = { id: courseDoc.id, ...courseDoc.data() };
+                const questionsSnapshot = await getDocs(query(collection(db, "questions"), where("courseId", "==", course.id)));
+                const questionCount = questionsSnapshot.size;
+                
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.style.animationDelay = Math.random() * 0.5 + 's';
+                card.innerHTML = `
+                    <div class="course-cover">
+                        <i class="fas ${course.icon || 'fa-book'}"></i>
+                        <div class="course-badge">
+                            <i class="fas fa-question-circle"></i> ${questionCount} ጥያቄዎች
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">${escapeHtml(course.name)}</h3>
+                        <p class="course-description">${escapeHtml(course.description || 'በዚህ ኮርስ ውስጥ ያሉ ጥያቄዎች ከዚህ በታች ባሉት አዝራሮች ይገኛሉ')}</p>
+                        <div class="course-stats">
+                            <div class="stat">
+                                <div class="stat-number">${questionCount}</div>
+                                <div class="stat-label">ጥያቄዎች</div>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="alert('ፈጣን ፈተና ለኮርሱ: ${escapeHtml(course.name)} በቅርቡ ይመጣል')">
+                                <i class="fas fa-bolt"></i> ፈጣን ፈተና
+                            </button>
+                            <button class="btn btn-danger" onclick="alert('የመጨረሻ ፈተና ለኮርሱ: ${escapeHtml(course.name)} በቅርቡ ይገኛል')">
+                                <i class="fas fa-trophy"></i> የመጨረሻ ፈተና
+                            </button>
+                        </div>
+                        ${currentUser ? `
+                            <div style="margin-top: 15px; display: flex; gap: 10px;">
+                                <button class="btn btn-outline" style="flex:1; font-size:0.8rem;" onclick="alert('ጥያቄ ማከል ለኮርሱ: ${escapeHtml(course.name)}')">
+                                    <i class="fas fa-plus"></i> ጥያቄ ያክሉ
+                                </button>
+                                <button class="btn btn-danger" style="flex:1; font-size:0.8rem;" onclick="deleteCourse('${course.id}')">
+                                    <i class="fas fa-trash"></i> ኮርሱን ሰርዝ
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+                coursesGrid.appendChild(card);
+            }
+            
+            if(coursesSnapshot.empty) {
+                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 20px;"><i class="fas fa-info-circle"></i> ምንም ኮርሶች የሉም። አስተዳዳሪ ኮርሶችን ማከል ይችላሉ።</div>';
+            }
+        }
+
+        window.showAddCourseModal = () => {
+            document.getElementById('courseModal').style.display = 'flex';
+        };
+
+        window.closeCourseModal = () => {
+            document.getElementById('courseModal').style.display = 'none';
+            document.getElementById('courseForm').reset();
+        };
+
+        document.getElementById('courseForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('courseName').value;
+            const icon = document.getElementById('courseIcon').value;
+            const description = document.getElementById('courseDesc').value;
+            
+            await addDoc(collection(db, "courses"), { name, icon, description, createdAt: new Date() });
+            alert('ኮርሱ ተጨምሯል!');
+            closeCourseModal();
+            loadCourses();
+        });
+
+        window.deleteCourse = async (courseId) => {
+            if(confirm('ይህን ኮርስ ለመሰረዝ እንወስናለን? ሁሉም ጥያቄዎች ይወገዳሉ!')) {
+                const questions = await getDocs(query(collection(db, "questions"), where("courseId", "==", courseId)));
+                for (const q of questions.docs) {
+                    await deleteDoc(doc(db, "questions", q.id));
+                }
+                await deleteDoc(doc(db, "courses", courseId));
+                alert('ኮርሱ ተሰርዟል!');
+                loadCourses();
+            }
+        };
+
+        function escapeHtml(str) {
+            if(!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if(m === '&') return '&amp;';
+                if(m === '<') return '&lt;';
+                if(m === '>') return '&gt;';
+                return m;
+            });
+        }
+    </script>
 </body>
 </html>
