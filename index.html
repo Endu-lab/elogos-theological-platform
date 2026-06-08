@@ -77,12 +77,27 @@
         .btn-primary { background: #0078D7; color: white; }
         .btn-danger { background: #E81123; color: white; }
         .btn-success { background: #107C10; color: white; }
-        .btn-warning { background: #ffc107; color: #333; }
+        .btn-warning { background: #FFB900; color: #333; }
         .btn-outline { background: transparent; border: 2px solid #0078D7; color: #0078D7; }
 
         .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Student Panel */
+        .student-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,120,215,0.2);
         }
 
         /* Course Grid */
@@ -99,7 +114,7 @@
             padding: 25px;
             transition: all 0.3s;
             cursor: pointer;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
@@ -127,8 +142,8 @@
             gap: 20px;
             margin-bottom: 20px;
             padding: 10px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .stat {
@@ -233,7 +248,7 @@
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 15px;
-            border: 1px solid #eee;
+            border: 1px solid #e0e0e0;
         }
 
         /* Exam Portal */
@@ -329,11 +344,64 @@
             font-size: 1.1rem;
             width: 100%;
             margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #0B5E0B;
+            transform: translateY(-2px);
+        }
+
+        /* Results Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .results-table th, 
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .results-table th {
+            background: #0078D7;
+            color: white;
+            font-weight: 600;
+        }
+
+        .results-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        h2 {
+            color: #0078D7;
+            margin-bottom: 20px;
+        }
+
+        small {
+            color: #666;
         }
 
         @media (max-width: 768px) {
             .header h1 { font-size: 2rem; }
             .courses-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+
+        .timer-box.warning {
+            background: #E81123;
+            animation: pulse 1s infinite;
         }
     </style>
 </head>
@@ -347,21 +415,44 @@
         <!-- Admin Panel -->
         <div id="adminPanel" class="admin-panel" style="display: none;">
             <div>
-                <i class="fas fa-user-circle"></i> <strong id="adminName"></strong> (አስተዳዳሪ)
+                <i class="fas fa-user-shield" style="color: #0078D7;"></i> <strong id="adminName"></strong> (አስተዳዳሪ)
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button class="btn btn-primary" onclick="showCreateCourseModal()"><i class="fas fa-plus"></i> አዲስ ኮርስ</button>
+                <button class="btn btn-success" onclick="showAllResults()"><i class="fas fa-chart-bar"></i> ውጤቶች</button>
+                <button class="btn btn-warning" onclick="exportAllData()"><i class="fas fa-download"></i> ውጤት አውርድ</button>
                 <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> ውጣ</button>
             </div>
         </div>
 
-        <!-- Login Button -->
+        <!-- Student Panel -->
+        <div id="studentPanel" class="student-panel" style="display: none;">
+            <div>
+                <i class="fas fa-user-graduate" style="color: #0078D7;"></i> <strong id="studentNameDisplay"></strong> | መታወቂያ: <span id="studentIdDisplay"></span>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="showMyResults()"><i class="fas fa-history"></i> የኔ ውጤቶች</button>
+                <button class="btn btn-danger" onclick="logoutStudent()"><i class="fas fa-sign-out-alt"></i> ውጣ</button>
+            </div>
+        </div>
+
+        <!-- Login Section -->
         <div id="loginSection" style="text-align: center; margin-bottom: 30px;">
-            <button class="btn btn-primary" onclick="login()" style="font-size: 1.1rem;"><i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ</button>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="showStudentRegistration()" style="font-size: 1.1rem;">
+                    <i class="fas fa-user-plus"></i> ተመዝገብ / Register
+                </button>
+                <button class="btn btn-outline" onclick="showStudentLogin()" style="font-size: 1.1rem;">
+                    <i class="fas fa-sign-in-alt"></i> ግባ / Login
+                </button>
+                <button class="btn btn-primary" onclick="loginAdmin()" style="font-size: 1.1rem;">
+                    <i class="fab fa-google"></i> የአስተዳዳሪ መግቢያ
+                </button>
+            </div>
         </div>
 
         <!-- Courses Grid -->
-        <h2 style="margin-bottom: 20px; color: #0078D7;"><i class="fas fa-book"></i> የትምህርት ኮርሶች</h2>
+        <h2><i class="fas fa-book"></i> የትምህርት ኮርሶች</h2>
         <div id="coursesGrid" class="courses-grid"></div>
     </div>
 
@@ -396,12 +487,87 @@
         </div>
     </div>
 
+    <!-- Student Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><i class="fas fa-user-plus"></i> የተማሪ ምዝገባ / Student Registration</span>
+                <span class="close-modal" onclick="closeRegisterModal()">&times;</span>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>ሙሉ ስም / Full Name *</label>
+                    <input type="text" id="regFullName" required placeholder="ሙሉ ስምዎን ያስገቡ">
+                </div>
+                <div class="form-group">
+                    <label>የተማሪ መታወቂያ ቁጥር / Student ID Number *</label>
+                    <input type="text" id="regStudentId" placeholder="ለምሳሌ: STU-2024-001">
+                    <small>ባዶ ቢተዉት በራስ ይፈጠራል</small>
+                </div>
+                <div class="form-group">
+                    <label>ስልክ ቁጥር / Phone Number *</label>
+                    <input type="tel" id="regPhone" required placeholder="09XXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>ኢሜይል / Email *</label>
+                    <input type="email" id="regEmail" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>ኮሌጅ / College</label>
+                    <input type="text" id="regCollege" placeholder="የኮሌጅ ስም (ካለ)">
+                </div>
+                <div class="form-group">
+                    <label>የዘመን አቆጣጠር / Year of Study</label>
+                    <select id="regYear">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-save"></i> ይመዝገቡ / Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Login Modal -->
+    <div id="loginStudentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><i class="fas fa-sign-in-alt"></i> የተማሪ መግቢያ / Student Login</span>
+                <span class="close-modal" onclick="closeStudentLoginModal()">&times;</span>
+            </div>
+            <form id="studentLoginForm">
+                <div class="form-group">
+                    <label>የተማሪ መታወቂያ ቁጥር / Student ID *</label>
+                    <input type="text" id="loginStudentId" required placeholder="ለምሳሌ: STU-2024-001">
+                </div>
+                <div class="form-group">
+                    <label>ስልክ ቁጥር / Phone Number *</label>
+                    <input type="tel" id="loginPhone" required placeholder="09XXXXXXXX">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt"></i> ግባ / Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; width: auto;">
+            <div class="modal-header">
+                <span><i class="fas fa-chart-bar"></i> <span id="resultsTitle">ውጤቶች / Results</span></span>
+                <span class="close-modal" onclick="closeResultsModal()">&times;</span>
+            </div>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+
     <!-- Exam Portal Modal -->
     <div id="examModal" class="modal"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -418,9 +584,11 @@
         const auth = getAuth(app);
 
         let currentUser = null;
+        let currentStudent = null;
         let currentExamData = null;
 
-        window.login = () => {
+        // ============ ADMIN FUNCTIONS ============
+        window.loginAdmin = () => {
             signInWithPopup(auth, new GoogleAuthProvider()).catch(err => alert("Error: " + err.message));
         };
 
@@ -429,25 +597,118 @@
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             const adminPanel = document.getElementById('adminPanel');
-            const loginSection = document.getElementById('loginSection');
-            
-            if (user) {
+            if (user && !currentStudent) {
                 adminPanel.style.display = 'flex';
-                loginSection.style.display = 'none';
                 document.getElementById('adminName').innerHTML = user.displayName || user.email;
-            } else {
+            } else if (!currentStudent) {
                 adminPanel.style.display = 'none';
-                loginSection.style.display = 'block';
             }
             loadCourses();
         });
 
+        // ============ STUDENT FUNCTIONS ============
+        window.showStudentRegistration = () => {
+            document.getElementById('registerModal').style.display = 'flex';
+        };
+
+        window.closeRegisterModal = () => {
+            document.getElementById('registerModal').style.display = 'none';
+        };
+
+        window.showStudentLogin = () => {
+            document.getElementById('loginStudentModal').style.display = 'flex';
+        };
+
+        window.closeStudentLoginModal = () => {
+            document.getElementById('loginStudentModal').style.display = 'none';
+        };
+
+        window.logoutStudent = () => {
+            currentStudent = null;
+            localStorage.removeItem('currentStudent');
+            document.getElementById('studentPanel').style.display = 'none';
+            document.getElementById('loginSection').style.display = 'block';
+            loadCourses();
+        };
+
+        // Student Registration Submit
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('regFullName').value;
+            let studentId = document.getElementById('regStudentId').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const college = document.getElementById('regCollege').value;
+            const year = document.getElementById('regYear').value;
+
+            if (!studentId) {
+                studentId = 'STU-' + Date.now().toString().slice(-8);
+            }
+
+            const studentsRef = collection(db, "students");
+            const q = query(studentsRef, where("studentId", "==", studentId));
+            const existing = await getDocs(q);
+            
+            if (!existing.empty) {
+                alert('ይህ የተማሪ መታወቂያ ቀድሞ ተመዝግቧል!');
+                return;
+            }
+
+            await addDoc(collection(db, "students"), {
+                fullName, studentId, phone, email, college, year,
+                registeredAt: new Date()
+            });
+
+            alert('ምዝገባ ተሳክቷል! አሁን መግባት ይችላሉ');
+            closeRegisterModal();
+            document.getElementById('registerForm').reset();
+        });
+
+        // Student Login Submit
+        document.getElementById('studentLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const studentId = document.getElementById('loginStudentId').value;
+            const phone = document.getElementById('loginPhone').value;
+
+            const studentsRef = collection(db, "students");
+            const q = query(studentsRef, where("studentId", "==", studentId), where("phone", "==", phone));
+            const snapshot = await getDocs(q);
+
+            if (snapshot.empty) {
+                alert('መታወቂያ ወይም ስልክ ቁጥር ተሳስቷል!');
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                currentStudent = { id: doc.id, ...doc.data() };
+            });
+            
+            localStorage.setItem('currentStudent', JSON.stringify(currentStudent));
+            document.getElementById('studentPanel').style.display = 'flex';
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('studentNameDisplay').innerHTML = currentStudent.fullName;
+            document.getElementById('studentIdDisplay').innerHTML = currentStudent.studentId;
+            closeStudentLoginModal();
+            loadCourses();
+        });
+
+        // Check saved student session
+        const savedStudent = localStorage.getItem('currentStudent');
+        if (savedStudent) {
+            currentStudent = JSON.parse(savedStudent);
+            document.getElementById('studentPanel').style.display = 'flex';
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('studentNameDisplay').innerHTML = currentStudent.fullName;
+            document.getElementById('studentIdDisplay').innerHTML = currentStudent.studentId;
+        }
+
+        // ============ COURSE FUNCTIONS ============
         async function loadCourses() {
             const coursesSnapshot = await getDocs(collection(db, "courses"));
             const coursesGrid = document.getElementById('coursesGrid');
             
             if (coursesSnapshot.empty) {
-                coursesGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 50px; background: white; border-radius: 20px;">📚 ምንም ኮርሶች የሉም። እባክዎ አስተዳዳሪው ኮርሶችን ይጨምሩ</div>';
+                coursesGrid.innerHTML = '<div style="text-align: center; padding: 50px; background: white; border-radius: 20px;">📚 ምንም ኮርሶች የሉም። እባክዎ አስተዳዳሪው ኮርሶችን ይጨምሩ</div>';
                 return;
             }
             
@@ -477,233 +738,6 @@
             }
         }
 
-        window.startExam = async (courseId, courseName, examType, timeLimit) => {
-            const questionsSnapshot = await getDocs(collection(db, "questions"));
-            let questions = [];
-            questionsSnapshot.forEach(doc => {
-                const q = doc.data();
-                if (q.courseId === courseId) {
-                    questions.push({ id: doc.id, ...q });
-                }
-            });
-            
-            if (questions.length === 0) {
-                alert('ለዚህ ኮርስ ምንም ጥያቄዎች የሉም! እባክዎ አስተዳዳሪው ጥያቄዎችን ይጨምሩ');
-                return;
-            }
-            
-            if (examType === 'quiz' && questions.length > 10) {
-                questions = shuffleArray(questions).slice(0, 10);
-            }
-            
-            currentExamData = { courseId, courseName, examType, questions, timeLimit };
-            showStudentInfoModal();
-        };
-
-        function shuffleArray(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        function showStudentInfoModal() {
-            const modal = document.getElementById('examModal');
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span><i class="fas fa-user-graduate"></i> የተማሪ መረጃ</span>
-                        <span class="close-modal" onclick="closeExamModal()">&times;</span>
-                    </div>
-                    <form id="studentInfoForm">
-                        <div class="form-group">
-                            <label>ሙሉ ስም / Full Name</label>
-                            <input type="text" id="studentName" required placeholder="ሙሉ ስምዎን ያስገቡ">
-                        </div>
-                        <div class="form-group">
-                            <label>ስልክ ቁጥር / Mobile Number</label>
-                            <input type="tel" id="studentMobile" required placeholder="09XXXXXXXX">
-                        </div>
-                        <div class="form-group">
-                            <label>ኮሌጅ / College (ካለ)</label>
-                            <input type="text" id="studentCollege" placeholder="የኮሌጅ ስም">
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fas fa-play"></i> ፈተና ጀምር</button>
-                    </form>
-                </div>
-            `;
-            modal.style.display = 'flex';
-            
-            document.getElementById('studentInfoForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const studentName = document.getElementById('studentName').value;
-                const studentMobile = document.getElementById('studentMobile').value;
-                const studentCollege = document.getElementById('studentCollege').value;
-                
-                if (!studentName || !studentMobile) {
-                    alert('እባክዎ ስም እና ስልክ ቁጥር ያስገቡ');
-                    return;
-                }
-                
-                closeExamModal();
-                runExam(studentName, studentMobile, studentCollege);
-            });
-        }
-
-        function runExam(studentName, studentMobile, studentCollege) {
-            let currentIndex = 0;
-            let answers = new Array(currentExamData.questions.length).fill(null);
-            let timeLeft = currentExamData.timeLimit;
-            let timerInterval;
-            
-            function renderExam() {
-                const q = currentExamData.questions[currentIndex];
-                const modal = document.getElementById('examModal');
-                
-                let optionsHtml = '';
-                q.options.forEach((opt, idx) => {
-                    const letter = String.fromCharCode(65 + idx);
-                    optionsHtml += `
-                        <div class="option" onclick="document.getElementById('q${currentIndex}_${letter}').click()">
-                            <input type="radio" name="q${currentIndex}" id="q${currentIndex}_${letter}" value="${letter}" ${answers[currentIndex] === letter ? 'checked' : ''} onchange="selectAnswer(${currentIndex}, '${letter}')">
-                            <label for="q${currentIndex}_${letter}"><strong>${letter}.</strong> ${escapeHtml(opt)}</label>
-                        </div>
-                    `;
-                });
-                
-                modal.innerHTML = `
-                    <div class="exam-container">
-                        <div class="exam-header">
-                            <div>
-                                <h3>${escapeHtml(currentExamData.courseName)}</h3>
-                                <small>${studentName} | ${studentMobile}</small>
-                                <div>${currentExamData.examType === 'quiz' ? 'ፈጣን ፈተና' : 'የመጨረሻ ፈተና'}</div>
-                            </div>
-                            <div class="timer-box" id="timerDisplay">
-                                <i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}
-                            </div>
-                        </div>
-                        
-                        <div class="question-box">
-                            <div class="question-text">
-                                <strong>ጥያቄ ${currentIndex + 1}/${currentExamData.questions.length}</strong><br>
-                                ${escapeHtml(q.text)}
-                            </div>
-                            <div class="options">
-                                ${optionsHtml}
-                            </div>
-                        </div>
-                        
-                        <div class="nav-buttons">
-                            <button class="btn btn-outline" onclick="changeQuestion(-1)" ${currentIndex === 0 ? 'disabled' : ''}>◀ ቀዳሚ</button>
-                            <span style="padding: 10px;">${currentIndex + 1} / ${currentExamData.questions.length}</span>
-                            <button class="btn btn-primary" onclick="changeQuestion(1)">ቀጥል ▶</button>
-                        </div>
-                        
-                        <button class="btn btn-success submit-btn" onclick="submitExam()">
-                            <i class="fas fa-paper-plane"></i> ፈተናውን አስገባ
-                        </button>
-                    </div>
-                `;
-                modal.style.display = 'flex';
-            }
-            
-            window.selectAnswer = (idx, letter) => {
-                answers[idx] = letter;
-            };
-            
-            window.changeQuestion = (delta) => {
-                const newIndex = currentIndex + delta;
-                if (newIndex >= 0 && newIndex < currentExamData.questions.length) {
-                    currentIndex = newIndex;
-                    renderExam();
-                }
-            };
-            
-            window.submitExam = () => {
-                const unanswered = answers.some(a => a === null);
-                if (unanswered) {
-                    if (!confirm('አንዳንድ ጥያቄዎች መልስ አላገኙም! ፈተናውን ማስገባት ይፈልጋሉ?')) {
-                        return;
-                    }
-                }
-                
-                clearInterval(timerInterval);
-                
-                let score = 0;
-                currentExamData.questions.forEach((q, idx) => {
-                    if (answers[idx] === q.correct) score++;
-                });
-                const percentage = (score / currentExamData.questions.length) * 100;
-                
-                // Save result
-                addDoc(collection(db, "results"), {
-                    studentName, studentMobile, studentCollege,
-                    courseId: currentExamData.courseId,
-                    courseName: currentExamData.courseName,
-                    examType: currentExamData.examType,
-                    score, total: currentExamData.questions.length,
-                    percentage,
-                    timeSpent: currentExamData.timeLimit - timeLeft,
-                    date: new Date()
-                });
-                
-                let grade = percentage >= 80 ? 'የላቀ (Excellent)' : percentage >= 60 ? 'ጥሩ (Good)' : percentage >= 40 ? 'አማካይ (Average)' : 'ዳግም ፈተና ያስፈልጋል (Need Improvement)';
-                
-                const modal = document.getElementById('examModal');
-                modal.innerHTML = `
-                    <div class="exam-container" style="text-align: center;">
-                        <i class="fas fa-check-circle" style="font-size: 4rem; color: #107C10; margin-bottom: 20px;"></i>
-                        <h2>ፈተና ተጠናቋል!</h2>
-                        <h3>${escapeHtml(currentExamData.courseName)}</h3>
-                        <p>${studentName} | ${studentMobile}</p>
-                        <div style="font-size: 3rem; margin: 20px 0;">${score}/${currentExamData.questions.length}</div>
-                        <div style="font-size: 1.5rem;">${percentage.toFixed(1)}%</div>
-                        <div style="margin: 20px; padding: 15px; background: rgba(0,0,0,0.05); border-radius: 10px;">${grade}</div>
-                        <button class="btn btn-primary" onclick="closeExamModal()">ዝጋ</button>
-                    </div>
-                `;
-            };
-            
-            function startTimer() {
-                timerInterval = setInterval(() => {
-                    if (timeLeft <= 0) {
-                        clearInterval(timerInterval);
-                        alert('ጊዜው አልቋል! ፈተናው በራስ ይሰረዛል');
-                        submitExam();
-                    } else {
-                        timeLeft--;
-                        const timerDisplay = document.getElementById('timerDisplay');
-                        if (timerDisplay) {
-                            timerDisplay.innerHTML = `<i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}`;
-                        }
-                        if (timeLeft <= 60) {
-                            timerDisplay.style.background = '#E81123';
-                            timerDisplay.style.animation = 'pulse 1s infinite';
-                        }
-                    }
-                }, 1000);
-            }
-            
-            function formatTime(seconds) {
-                const mins = Math.floor(seconds / 60);
-                const secs = seconds % 60;
-                return `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-            }
-            
-            renderExam();
-            startTimer();
-        }
-
-        window.closeExamModal = () => {
-            const modal = document.getElementById('examModal');
-            modal.style.display = 'none';
-            modal.innerHTML = '';
-            if (currentExamData) location.reload();
-        };
-
-        // Admin Functions
         window.showCreateCourseModal = () => {
             document.getElementById('questionsContainer').innerHTML = '';
             addQuestionField();
@@ -779,6 +813,281 @@
             }
         };
 
+        // ============ EXAM FUNCTIONS ============
+        window.startExam = async (courseId, courseName, examType, timeLimit) => {
+            if (!currentStudent) {
+                alert('እባክዎ መጀመሪያ ይመዝገቡ ወይም ይግቡ!');
+                showStudentRegistration();
+                return;
+            }
+
+            const questionsSnapshot = await getDocs(collection(db, "questions"));
+            let questions = [];
+            questionsSnapshot.forEach(doc => {
+                const q = doc.data();
+                if (q.courseId === courseId) {
+                    questions.push({ id: doc.id, ...q });
+                }
+            });
+            
+            if (questions.length === 0) {
+                alert('ለዚህ ኮርስ ምንም ጥያቄዎች የሉም! እባክዎ አስተዳዳሪው ጥያቄዎችን ይጨምሩ');
+                return;
+            }
+            
+            if (examType === 'quiz' && questions.length > 10) {
+                questions = shuffleArray(questions).slice(0, 10);
+            }
+            
+            currentExamData = { courseId, courseName, examType, questions, timeLimit };
+            runExam();
+        };
+
+        function runExam() {
+            let currentIndex = 0;
+            let answers = new Array(currentExamData.questions.length).fill(null);
+            let timeLeft = currentExamData.timeLimit;
+            let timerInterval;
+            
+            function renderExam() {
+                const q = currentExamData.questions[currentIndex];
+                const modal = document.getElementById('examModal');
+                
+                let optionsHtml = '';
+                q.options.forEach((opt, idx) => {
+                    const letter = String.fromCharCode(65 + idx);
+                    optionsHtml += `
+                        <div class="option" onclick="document.getElementById('q${currentIndex}_${letter}').click()">
+                            <input type="radio" name="q${currentIndex}" id="q${currentIndex}_${letter}" value="${letter}" ${answers[currentIndex] === letter ? 'checked' : ''} onchange="selectAnswer(${currentIndex}, '${letter}')">
+                            <label for="q${currentIndex}_${letter}"><strong>${letter}.</strong> ${escapeHtml(opt)}</label>
+                        </div>
+                    `;
+                });
+                
+                modal.innerHTML = `
+                    <div class="exam-container">
+                        <div class="exam-header">
+                            <div>
+                                <h3 style="color: #0078D7;">${escapeHtml(currentExamData.courseName)}</h3>
+                                <small>${currentStudent.fullName} | ${currentStudent.studentId}</small>
+                                <div>${currentExamData.examType === 'quiz' ? 'ፈጣን ፈተና' : 'የመጨረሻ ፈተና'}</div>
+                            </div>
+                            <div class="timer-box" id="timerDisplay">
+                                <i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}
+                            </div>
+                        </div>
+                        
+                        <div class="question-box">
+                            <div class="question-text">
+                                <strong>ጥያቄ ${currentIndex + 1}/${currentExamData.questions.length}</strong><br>
+                                ${escapeHtml(q.text)}
+                            </div>
+                            <div class="options">
+                                ${optionsHtml}
+                            </div>
+                        </div>
+                        
+                        <div class="nav-buttons">
+                            <button class="btn btn-outline" onclick="changeQuestion(-1)" ${currentIndex === 0 ? 'disabled' : ''}>◀ ቀዳሚ</button>
+                            <span style="padding: 10px;">${currentIndex + 1} / ${currentExamData.questions.length}</span>
+                            <button class="btn btn-primary" onclick="changeQuestion(1)">ቀጥል ▶</button>
+                        </div>
+                        
+                        <button class="submit-btn" onclick="submitExam()">
+                            <i class="fas fa-paper-plane"></i> ፈተናውን አስገባ
+                        </button>
+                    </div>
+                `;
+                modal.style.display = 'flex';
+            }
+            
+            window.selectAnswer = (idx, letter) => {
+                answers[idx] = letter;
+            };
+            
+            window.changeQuestion = (delta) => {
+                const newIndex = currentIndex + delta;
+                if (newIndex >= 0 && newIndex < currentExamData.questions.length) {
+                    currentIndex = newIndex;
+                    renderExam();
+                }
+            };
+            
+            window.submitExam = () => {
+                const unanswered = answers.some(a => a === null);
+                if (unanswered) {
+                    if (!confirm('አንዳንድ ጥያቄዎች መልስ አላገኙም! ፈተናውን ማስገባት ይፈልጋሉ?')) {
+                        return;
+                    }
+                }
+                
+                clearInterval(timerInterval);
+                
+                let score = 0;
+                currentExamData.questions.forEach((q, idx) => {
+                    if (answers[idx] === q.correct) score++;
+                });
+                const percentage = (score / currentExamData.questions.length) * 100;
+                
+                // Save result to Firebase
+                addDoc(collection(db, "results"), {
+                    studentId: currentStudent.studentId,
+                    studentName: currentStudent.fullName,
+                    studentPhone: currentStudent.phone,
+                    studentEmail: currentStudent.email,
+                    studentCollege: currentStudent.college,
+                    courseId: currentExamData.courseId,
+                    courseName: currentExamData.courseName,
+                    examType: currentExamData.examType,
+                    score, total: currentExamData.questions.length,
+                    percentage,
+                    timeSpent: currentExamData.timeLimit - timeLeft,
+                    date: new Date()
+                });
+                
+                let grade = percentage >= 80 ? 'የላቀ (Excellent)' : percentage >= 60 ? 'ጥሩ (Good)' : percentage >= 40 ? 'አማካይ (Average)' : 'ዳግም ፈተና ያስፈልጋል (Need Improvement)';
+                
+                const modal = document.getElementById('examModal');
+                modal.innerHTML = `
+                    <div class="exam-container" style="text-align: center;">
+                        <i class="fas fa-check-circle" style="font-size: 4rem; color: #107C10; margin-bottom: 20px;"></i>
+                        <h2>ፈተና ተጠናቋል!</h2>
+                        <h3 style="color: #0078D7;">${escapeHtml(currentExamData.courseName)}</h3>
+                        <p>${currentStudent.fullName} | ${currentStudent.studentId}</p>
+                        <div style="font-size: 3rem; margin: 20px 0; color: #0078D7; font-weight: 700;">${score}/${currentExamData.questions.length}</div>
+                        <div style="font-size: 1.5rem;">${percentage.toFixed(1)}%</div>
+                        <div style="margin: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">${grade}</div>
+                        <button class="btn btn-primary" onclick="closeExamModal()">ዝጋ</button>
+                    </div>
+                `;
+            };
+            
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        alert('ጊዜው አልቋል! ፈተናው በራስ ይሰረዛል');
+                        submitExam();
+                    } else {
+                        timeLeft--;
+                        const timerDisplay = document.getElementById('timerDisplay');
+                        if (timerDisplay) {
+                            timerDisplay.innerHTML = `<i class="fas fa-hourglass-half"></i> ${formatTime(timeLeft)}`;
+                        }
+                        if (timeLeft <= 60) {
+                            timerDisplay.style.background = '#E81123';
+                            timerDisplay.style.animation = 'pulse 1s infinite';
+                        }
+                    }
+                }, 1000);
+            }
+            
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+            }
+            
+            renderExam();
+            startTimer();
+        }
+
+        window.closeExamModal = () => {
+            const modal = document.getElementById('examModal');
+            modal.style.display = 'none';
+            modal.innerHTML = '';
+            if (currentExamData) location.reload();
+        };
+
+        // ============ RESULTS FUNCTIONS ============
+        window.showMyResults = async () => {
+            const resultsRef = collection(db, "results");
+            const q = query(resultsRef, where("studentId", "==", currentStudent.studentId));
+            const snapshot = await getDocs(q);
+            
+            const modal = document.getElementById('resultsModal');
+            document.getElementById('resultsTitle').innerHTML = `የኔ ውጤቶች - ${currentStudent.fullName}`;
+            
+            if (snapshot.empty) {
+                document.getElementById('resultsContent').innerHTML = '<p style="text-align: center;">ምንም ውጤቶች የሉም</p>';
+            } else {
+                let html = '<table class="results-table"><thead><tr><th>ኮርስ</th><th>የፈተና አይነት</th><th>ውጤት</th><th>መቶኛ</th><th>ቀን</th><tr></thead><tbody>';
+                snapshot.forEach(doc => {
+                    const r = doc.data();
+                    const date = r.date?.toDate().toLocaleDateString() || new Date().toLocaleDateString();
+                    html += `<tr>
+                        <td>${escapeHtml(r.courseName)}</td>
+                        <td>${r.examType === 'quiz' ? 'ፈጣን ፈተና' : 'የመጨረሻ ፈተና'}</td>
+                        <td>${r.score}/${r.total}</td>
+                        <td>${r.percentage.toFixed(1)}%</td>
+                        <td>${date}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                document.getElementById('resultsContent').innerHTML = html;
+            }
+            modal.style.display = 'flex';
+        };
+
+        window.showAllResults = async () => {
+            const snapshot = await getDocs(collection(db, "results"));
+            const modal = document.getElementById('resultsModal');
+            document.getElementById('resultsTitle').innerHTML = `ሁሉም የተማሪ ውጤቶች`;
+            
+            if (snapshot.empty) {
+                document.getElementById('resultsContent').innerHTML = '<p style="text-align: center;">ምንም ውጤቶች የሉም</p>';
+            } else {
+                let html = '<table class="results-table"><thead><tr><th>ተማሪ</th><th>መታወቂያ</th><th>ኮርስ</th><th>ውጤት</th><th>መቶኛ</th><th>ቀን</th></tr></thead><tbody>';
+                snapshot.forEach(doc => {
+                    const r = doc.data();
+                    const date = r.date?.toDate().toLocaleDateString() || new Date().toLocaleDateString();
+                    html += `<tr>
+                        <td>${escapeHtml(r.studentName)}</td>
+                        <td>${escapeHtml(r.studentId)}</td>
+                        <td>${escapeHtml(r.courseName)}</td>
+                        <td>${r.score}/${r.total}</td>
+                        <td>${r.percentage.toFixed(1)}%</td>
+                        <td>${date}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+                document.getElementById('resultsContent').innerHTML = html;
+            }
+            modal.style.display = 'flex';
+        };
+
+        window.closeResultsModal = () => {
+            document.getElementById('resultsModal').style.display = 'none';
+        };
+
+        // ============ EXPORT DATA ============
+        window.exportAllData = async () => {
+            const snapshot = await getDocs(collection(db, "results"));
+            let csv = "Student Name,Student ID,Phone,Email,Course,Exam Type,Score,Total,Percentage,Date\n";
+            snapshot.forEach(doc => {
+                const r = doc.data();
+                const date = r.date?.toDate().toLocaleDateString() || new Date().toLocaleDateString();
+                csv += `"${r.studentName}","${r.studentId}","${r.studentPhone || ''}","${r.studentEmail || ''}","${r.courseName}","${r.examType}",${r.score},${r.total},${r.percentage.toFixed(1)},"${date}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `exam_results_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            alert('ውጤቶች በሚገባ ወርደዋል!');
+        };
+
+        // ============ HELPER FUNCTIONS ============
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -788,8 +1097,8 @@
                 return m;
             });
         }
-        
-        // Add pulse animation
+
+        // Add pulse animation style
         const style = document.createElement('style');
         style.textContent = `@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }`;
         document.head.appendChild(style);
